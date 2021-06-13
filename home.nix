@@ -93,8 +93,6 @@ in {
     lorri # Easy Nix shell
     ngrok-1 # Expose local HTTP stuff publicly
     niv # Nix dependency management
-    nix-serve
-    nixos-generators
     nodejs # node and npm
     pinentry_mac # Necessary for GPG
     ruby_2_6 # An old classic

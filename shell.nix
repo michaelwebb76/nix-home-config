@@ -1,4 +1,4 @@
-# Shell configuration for zsh (frequently used) and fish (used just for fun)
+# Shell configuration for zsh (frequently used)
 
 { config, lib, pkgs, ... }:
 
@@ -6,27 +6,11 @@ let
   # Set all shell aliases programatically
   shellAliases = {
     # Aliases for commonly used tools
-    hm = "humioctl";
     grep = "grep --color=auto";
-    circleci = "circleci-cli";
     just = "just --no-dotenv";
     diff = "diff --color=auto";
     iex = "iex --dot-iex ~/.iex.exs";
-    hk = "heroku";
-    cat = "bat";
-    we = "watchexec";
-    find = "fd";
-    cloc = "tokei";
-    l = "exa";
     ll = "ls -lh";
-    ls = "exa";
-    dk = "docker";
-    k = "kubectl";
-    dc = "docker-compose";
-    bazel = "bazelisk";
-    md = "mdcat";
-    mk = "minikube";
-    start-docker = "docker-machine start default";
     tf = "terraform";
     hms = "home-manager switch";
 
@@ -46,21 +30,8 @@ in {
   # Fancy filesystem navigator
   programs.broot = {
     enable = true;
-    enableFishIntegration = true;
     enableZshIntegration = true;
   };
-
-  # fish shell settings
-  programs.fish = {
-    inherit shellAliases;
-    enable = true;
-  };
-
-  #programs.fzf = {
-  #  enable = true;
-  #  enableBashIntegration = true;
-  #  defaultCommand = "${pkgs.ripgrep}/bin/rg --files";
-  #};
 
   # zsh settings
   programs.zsh = {
@@ -90,17 +61,8 @@ in {
       eval "$(starship init zsh)"
 
       # Autocomplete for various utilities
-      source <(helm completion zsh)
-      source <(kubectl completion zsh)
-      source <(linkerd completion zsh)
-      source <(doctl completion zsh)
-      source <(minikube completion zsh)
       source <(gh completion --shell zsh)
-      rustup completions zsh > ~/.zfunc/_rustup
-      source <(cue completion zsh)
       source <(npm completion zsh)
-      source <(humioctl completion zsh)
-      source <(fluxctl completion zsh)
 
       # direnv setup
       eval "$(direnv hook zsh)"
