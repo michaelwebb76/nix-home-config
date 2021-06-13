@@ -8,8 +8,8 @@ in {
   programs.git = {
     package = pkgs.gitAndTools.gitFull;
     enable = true;
-    userName = "Luc Perkins";
-    userEmail = "luc@blockfi.com";
+    userName = "Michael Webb";
+    userEmail = "michaelwebb76@gmail.com";
 
     # Replaces ~/.gitignore
     ignores = [
@@ -19,7 +19,6 @@ in {
       "*.swp"
       "built-in-stubs.jar"
       "dumb.rdb"
-      ".elixir_ls/"
       ".vscode/"
       "npm-debug.log"
       "shell.nix"
