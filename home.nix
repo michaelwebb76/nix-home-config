@@ -39,11 +39,6 @@ let
     wo
   ];
 
-  rubyPackages = with pkgs.rubyPackages_2_6; [
-    pry
-    rails
-  ];
-
   gitTools = with pkgs.gitAndTools; [
     delta
     diff-so-fancy
@@ -102,5 +97,5 @@ in {
     vscode # My fav text editor if I'm being honest
     wget
     yarn # Node.js package manager
-  ] ++ gitTools ++ rubyPackages ++ scripts;
+  ] ++ gitTools ++ scripts;
 }
