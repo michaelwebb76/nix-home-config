@@ -64,6 +64,11 @@ in {
   # Enable Home Manager
   programs.home-manager.enable = true;
 
+  # Enable direnv
+  programs.direnv.enable = true;
+  programs.direnv.enableNixDirenvIntegration = true;
+  programs.zsh.enable = true;
+
   home = {
     username = "michaelwebb";
     homeDirectory = "/Users/michaelwebb";
@@ -78,24 +83,19 @@ in {
   # Miscellaneous packages (in alphabetical order)
   home.packages = with pkgs; [
     autoconf # Broadly used tool, no clue what it does
-    awscli # Amazon Web Services CLI
     bash # /bin/bash
     cachix # Nix build cache
     conftest
     curl # An old classic
-    dhall # Exotic, Nix-like configuration language
     direnv # Per-directory environment variables
-    docker # World's #1 container tool
-    docker-compose # Local multi-container Docker environments
-    docker-machine # Docker daemon for macOS
+    # gnupg # gpg for GNU/Linux
     graphviz # dot
     htop # Resource monitoring
     lorri # Easy Nix shell
     ngrok-1 # Expose local HTTP stuff publicly
     niv # Nix dependency management
     nodejs # node and npm
-    pinentry_mac # Necessary for GPG
-    ruby_2_6 # An old classic
+    # pinentry_mac # Necessary for GPG
     starship # Fancy shell that works with zsh
     terraform # Declarative infrastructure management
     tree # Should be included in macOS but it's not

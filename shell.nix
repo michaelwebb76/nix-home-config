@@ -67,17 +67,6 @@ in {
       # direnv setup
       eval "$(direnv hook zsh)"
 
-      # Start up Docker daemon if not running
-      if [ $(docker-machine status default) != "Running" ]; then
-        docker-machine start default
-      fi
-
-      # Docker env
-      eval "$(docker-machine env default)"
-
-      # Load asdf
-      . $HOME/.asdf/asdf.sh
-
       # direnv hook
       eval "$(direnv hook zsh)"
     '';
