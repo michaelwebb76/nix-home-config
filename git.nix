@@ -32,8 +32,8 @@ in {
         whitespace = "trailing-space,space-before-tab";
       };
 
-      # commit.gpgsign = "true";
-      # gpg.program = "gpg2";
+      commit.gpgsign = "true";
+      gpg.program = "gpg2";
 
       protocol.keybase.allow = "always";
       credential.helper = "osxkeychain";

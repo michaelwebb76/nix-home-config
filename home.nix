@@ -88,14 +88,14 @@ in {
     conftest
     curl # An old classic
     direnv # Per-directory environment variables
-    # gnupg # gpg for GNU/Linux
+    gnupg # gpg for GNU/Linux
     graphviz # dot
     htop # Resource monitoring
     lorri # Easy Nix shell
     ngrok-1 # Expose local HTTP stuff publicly
     niv # Nix dependency management
     nodejs # node and npm
-    # pinentry_mac # Necessary for GPG
+    pinentry_mac # Necessary for GPG
     starship # Fancy shell that works with zsh
     terraform # Declarative infrastructure management
     tree # Should be included in macOS but it's not
