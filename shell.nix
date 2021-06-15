@@ -18,7 +18,7 @@ let
     szsh = "source ~/.zshrc";
 
     # Reload home manager and zsh
-    reload = "home-manager switch && source ~/.zshrc";
+    reload = "NIXPKGS_ALLOW_UNFREE=1 home-manager switch && source ~/.zshrc";
 
     # Nix garbage collection
     garbage = "nix-collect-garbage -d && docker image prune --force";
@@ -46,6 +46,10 @@ in {
       export TERM="xterm-256color"
       bindkey -e
 
+      export ZSH=$HOME/.oh-my-zsh
+      plugins=(git bundler gem powder rake themes history z brew)
+      source $ZSH/oh-my-zsh.sh
+
       # Nix setup (environment variables, etc.)
       if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
         . ~/.nix-profile/etc/profile.d/nix.sh
@@ -69,6 +73,9 @@ in {
 
       # direnv hook
       eval "$(direnv hook zsh)"
+
+      # run ssh-agent
+      eval "$(ssh-agent)"
     '';
 
     # Disable oh my zsh in favor of Starship shell
