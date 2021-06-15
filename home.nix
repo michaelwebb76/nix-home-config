@@ -63,6 +63,17 @@ in {
   programs.direnv.enable = true;
   programs.direnv.enableNixDirenvIntegration = true;
   programs.zsh.enable = true;
+  programs.ssh = {
+    enable = true;
+    extraOptionOverrides = {
+      AddKeysToAgent = "ask";
+    };
+    matchBlocks = {
+      "pumpkin" = {
+        user = "mike";
+      };
+    };
+  };
 
   home = {
     username = "michaelwebb";
