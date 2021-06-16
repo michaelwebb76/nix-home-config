@@ -67,7 +67,12 @@ in {
     enable = true;
     extraOptionOverrides = {
       AddKeysToAgent = "yes";
+      ControlMaster = "auto";
+      ControlPath = "/tmp/ssh_mux_%h_%p_%r";
+      ControlPersist = "10";
       IdentityFile = "~/.ssh/id_rsa";
+      IgnoreUnknown = "UseKeychain";
+      ServerAliveInterval = "120";
       UseKeychain = "yes";
     };
     matchBlocks = {
