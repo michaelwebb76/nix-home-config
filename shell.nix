@@ -73,6 +73,10 @@ in {
 
       # direnv hook
       eval "$(direnv hook zsh)"
+
+      for i in $(ps aux | grep ssh-agent | grep -v grep |awk '{print $2}'); do kill $i; done
+      eval `ssh-agent -s`
+      eval `ssh-add -K`
     '';
 
     # Disable oh my zsh in favor of Starship shell
