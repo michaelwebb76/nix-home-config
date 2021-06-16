@@ -66,8 +66,9 @@ in {
   programs.ssh = {
     enable = true;
     extraOptionOverrides = {
-      AddKeysToAgent = "ask";
+      AddKeysToAgent = "yes";
       IdentityFile = "~/.ssh/id_rsa";
+      UseKeychain = "yes";
     };
     matchBlocks = {
       "pumpkin" = {

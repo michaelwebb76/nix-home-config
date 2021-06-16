@@ -73,9 +73,6 @@ in {
 
       # direnv hook
       eval "$(direnv hook zsh)"
-
-      # run ssh-agent
-      eval "$(ssh-agent)"
     '';
 
     # Disable oh my zsh in favor of Starship shell
