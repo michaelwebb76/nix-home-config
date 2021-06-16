@@ -64,12 +64,13 @@ in {
   programs.direnv.enableNixDirenvIntegration = true;
   programs.zsh.enable = true;
   programs.ssh = {
+    controlMaster = "auto";
+    controlPath = "/tmp/ssh_mux_%h_%p_%r";
+    controlPersist = "10";
     enable = true;
     extraOptionOverrides = {
       AddKeysToAgent = "yes";
       ControlMaster = "auto";
-      ControlPath = "/tmp/ssh_mux_%h_%p_%r";
-      ControlPersist = "10";
       IdentityFile = "~/.ssh/id_rsa";
       IgnoreUnknown = "UseKeychain";
       TCPKeepAlive= "yes";
