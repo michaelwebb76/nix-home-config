@@ -72,14 +72,16 @@ in {
       ControlPersist = "10";
       IdentityFile = "~/.ssh/id_rsa";
       IgnoreUnknown = "UseKeychain";
-      ServerAliveInterval = "120";
+      TCPKeepAlive= "yes";
       UseKeychain = "yes";
     };
+    forwardAgent = true;
     matchBlocks = {
       "pumpkin" = {
         user = "mike";
       };
     };
+    serverAliveInterval = 120;
   };
 
   home = {
