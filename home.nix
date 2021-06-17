@@ -115,6 +115,7 @@ in {
     starship # Fancy shell that works with zsh
     terraform # Declarative infrastructure management
     tree # Should be included in macOS but it's not
+    unused # find unused code
     vscode # My fav text editor if I'm being honest
     wget
     yarn # Node.js package manager
