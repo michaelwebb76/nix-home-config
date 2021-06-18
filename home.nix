@@ -98,19 +98,13 @@ in {
 
   # Miscellaneous packages (in alphabetical order)
   home.packages = with pkgs; [
-    autoconf # Broadly used tool, no clue what it does
-    bash # /bin/bash
     cachix # Nix build cache
-    conftest
     curl # An old classic
     direnv # Per-directory environment variables
     gnupg # gpg for GNU/Linux
     graphviz # dot
     htop # Resource monitoring
-    lorri # Easy Nix shell
-    ngrok-1 # Expose local HTTP stuff publicly
     niv # Nix dependency management
-    nodejs # node and npm
     pinentry_mac # Necessary for GPG
     starship # Fancy shell that works with zsh
     terraform # Declarative infrastructure management
@@ -118,6 +112,5 @@ in {
     unused # find unused code
     vscode # My fav text editor if I'm being honest
     wget
-    yarn # Node.js package manager
   ] ++ gitTools ++ scripts;
 }

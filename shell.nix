@@ -64,10 +64,6 @@ in {
       # Start up Starship shell
       eval "$(starship init zsh)"
 
-      # Autocomplete for various utilities
-      source <(gh completion --shell zsh)
-      source <(npm completion zsh)
-
       # direnv setup
       eval "$(direnv hook zsh)"
 
