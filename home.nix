@@ -100,7 +100,7 @@ in {
   home.packages = with pkgs; [
     cachix # Nix build cache
     curl # An old classic
-    direnv # Per-directory environment variables
+    fzf # Fuzzy matching
     gnupg # gpg for GNU/Linux
     graphviz # dot
     htop # Resource monitoring
@@ -109,7 +109,6 @@ in {
     starship # Fancy shell that works with zsh
     terraform # Declarative infrastructure management
     tree # Should be included in macOS but it's not
-    unused # find unused code
     vscode # My fav text editor if I'm being honest
     wget
   ] ++ gitTools ++ scripts;
