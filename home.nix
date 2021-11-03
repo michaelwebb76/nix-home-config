@@ -61,7 +61,7 @@ in {
 
   # Enable direnv
   programs.direnv.enable = true;
-  programs.direnv.enableNixDirenvIntegration = true;
+  programs.direnv.nix-direnv.enable = true;
   programs.zsh.enable = true;
   programs.ssh = {
     controlMaster = "auto";
@@ -103,6 +103,7 @@ in {
     fzf # Fuzzy matching
     gnupg # gpg for GNU/Linux
     graphviz # dot
+    heroku # heroku commandl line
     htop # Resource monitoring
     niv # Nix dependency management
     pinentry_mac # Necessary for GPG
