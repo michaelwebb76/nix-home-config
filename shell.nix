@@ -73,7 +73,7 @@ in {
       # Nuclear option
       # for i in $(ps aux | grep ssh-agent | grep -v grep |awk '{print $2}'); do kill $i; done
       eval `ssh-agent -s`
-      ssh-add -K
+      ssh-add --apple-use-keychain
     '';
 
     # Disable oh my zsh in favor of Starship shell

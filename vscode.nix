@@ -13,7 +13,7 @@
     };
 
     extensions = with pkgs.vscode-extensions; [
-      bbenoist.Nix
+      bbenoist.nix
     ];
   };
 }
