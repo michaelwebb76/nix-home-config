@@ -81,6 +81,13 @@ in {
       "pumpkin" = {
         user = "mike";
       };
+      # https://github.com/LnL7/nix-docker#running-as-a-remote-builder
+      "nix-docker" = {
+        hostname = "127.0.0.1";
+        identityFile = "~/.ssh/docker_rsa";
+        port = 3022;
+        user = "root";
+      };
     };
     serverAliveInterval = 120;
   };
