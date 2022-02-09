@@ -8,7 +8,6 @@ let
     # Aliases for commonly used tools
     grep = "grep --color=auto";
     just = "just --no-dotenv";
-    diff = "diff --color=auto";
     iex = "iex --dot-iex ~/.iex.exs";
     ll = "ls -lh";
     tf = "terraform";
@@ -25,6 +24,11 @@ let
 
     # See which Nix packages are installed
     installed = "nix-env --query --installed";
+
+    brc = "bundle exec rails c"
+    brs = "bundle exec rails s"
+    dma = "bundle exec rake db:migrate"
+    dmr = "bundle exec rake db:rollback"
   };
 in {
   # Fancy filesystem navigator
