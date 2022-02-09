@@ -25,10 +25,10 @@ let
     # See which Nix packages are installed
     installed = "nix-env --query --installed";
 
-    brc = "bundle exec rails c"
-    brs = "bundle exec rails s"
-    dma = "bundle exec rake db:migrate"
-    dmr = "bundle exec rake db:rollback"
+    brc = "bundle exec rails c";
+    brs = "bundle exec rails s";
+    dma = "bundle exec rake db:migrate";
+    dmr = "bundle exec rake db:rollback";
   };
 in {
   # Fancy filesystem navigator
