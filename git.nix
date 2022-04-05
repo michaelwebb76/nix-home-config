@@ -27,8 +27,7 @@ in {
     # Global Git config
     extraConfig = {
       core = {
-        editor = "vim";
-        pager = "delta --dark";
+        editor = "code";
         whitespace = "trailing-space,space-before-tab";
       };
 
