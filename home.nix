@@ -40,10 +40,6 @@ let
   ];
 
   gitTools = with pkgs.gitAndTools; [
-    delta
-    diff-so-fancy
-    git-codeowners
-    gitflow
     gh
   ];
 
@@ -110,7 +106,6 @@ in {
     fzf # Fuzzy matching
     gnupg # gpg for GNU/Linux
     graphviz # dot
-    heroku # heroku commandl line
     htop # Resource monitoring
     niv # Nix dependency management
     pinentry_mac # Necessary for GPG
