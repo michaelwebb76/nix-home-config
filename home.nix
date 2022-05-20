@@ -101,6 +101,7 @@ in {
 
   # Miscellaneous packages (in alphabetical order)
   home.packages = with pkgs; [
+    awscli # AWS CLI
     cachix # Nix build cache
     curl # An old classic
     fzf # Fuzzy matching
