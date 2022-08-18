@@ -21,7 +21,6 @@ in {
       "dumb.rdb"
       ".vscode/"
       "npm-debug.log"
-      "shell.nix"
     ];
 
     # Global Git config
@@ -35,7 +34,9 @@ in {
       gpg.program = "gpg2";
 
       protocol.keybase.allow = "always";
-      credential.helper = "osxkeychain";
+      credential.helper = "${
+        pkgs.git.override { withLibsecret = true; }
+      }/bin/git-credential-libsecret";
       pull.rebase = "false";
     };
   };

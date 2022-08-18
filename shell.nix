@@ -50,10 +50,6 @@ in {
       export TERM="xterm-256color"
       bindkey -e
 
-      export ZSH=$HOME/.oh-my-zsh
-      plugins=(git bundler gem powder rake themes history z brew)
-      source $ZSH/oh-my-zsh.sh
-
       # Nix setup (environment variables, etc.)
       if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
         . ~/.nix-profile/etc/profile.d/nix.sh
@@ -77,20 +73,22 @@ in {
       # Nuclear option
       # for i in $(ps aux | grep ssh-agent | grep -v grep |awk '{print $2}'); do kill $i; done
       eval `ssh-agent -s`
-      ssh-add --apple-use-keychain
     '';
 
-    # Disable oh my zsh in favor of Starship shell
-    #oh-my-zsh = {
-    #  enable = true;
-    #  plugins = [
-    #    "docker"
-    #    "docker-compose"
-    #    "dotenv"
-    #    "git"
-    #    "sudo"
-    #  ];
-    #  theme = "muse";
-    #};
+    oh-my-zsh = {
+     enable = true;
+     plugins = [
+       "git"
+       "bundler"
+       "gem"
+       "powder"
+       "rake"
+       "themes"
+       "history"
+       "z"
+       "brew"
+     ];
+     theme = "muse";
+    };
   };
 }
