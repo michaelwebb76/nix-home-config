@@ -69,10 +69,6 @@ in {
 
       # direnv hook
       eval "$(direnv hook zsh)"
-
-      # Nuclear option
-      # for i in $(ps aux | grep ssh-agent | grep -v grep |awk '{print $2}'); do kill $i; done
-      eval `ssh-agent -s`
     '';
 
     oh-my-zsh = {
