@@ -67,7 +67,7 @@ in {
     extraOptionOverrides = {
       AddKeysToAgent = "yes";
       ControlMaster = "auto";
-      IdentityFile = "~/.ssh/id_rsa";
+      IdentityFile = "/home/mike/.ssh/id_rsa";
       IgnoreUnknown = "UseKeychain";
       TCPKeepAlive= "yes";
       UseKeychain = "yes";
@@ -85,25 +85,26 @@ in {
     username = "mike";
     homeDirectory = "/home/mike";
     stateVersion = "21.05";
+    sessionVariables = {
+      EDITOR = "code";
+      TERMINAL = "alacritty";
+    };
+
+    # Miscellaneous packages (in alphabetical order)
+    packages = with pkgs; [
+      cachix # Nix build cache
+      curl # An old classic
+      fzf # Fuzzy matching
+      graphviz # dot
+      htop # Resource monitoring
+      niv # Nix dependency management
+      starship # Fancy shell that works with zsh
+      terraform # Declarative infrastructure management
+      tree # Should be included in macOS but it's not
+      wget
+      zsh-z
+    ] ++ gitTools ++ scripts;
   };
 
-  home.sessionVariables = {
-    EDITOR = "code";
-    TERMINAL = "alacritty";
-  };
 
-  # Miscellaneous packages (in alphabetical order)
-  home.packages = with pkgs; [
-    cachix # Nix build cache
-    curl # An old classic
-    fzf # Fuzzy matching
-    graphviz # dot
-    htop # Resource monitoring
-    niv # Nix dependency management
-    starship # Fancy shell that works with zsh
-    terraform # Declarative infrastructure management
-    tree # Should be included in macOS but it's not
-    wget
-    zsh-z
-  ] ++ gitTools ++ scripts;
 }
