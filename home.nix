@@ -105,6 +105,4 @@ in {
       zsh-z
     ] ++ gitTools ++ scripts;
   };
-
-
 }
