@@ -29,6 +29,7 @@ let
     brs = "bundle exec rails s";
     dma = "bundle exec rake db:migrate";
     dmr = "bundle exec rake db:rollback";
+    vsc = "code . --enable-features=UseOzonePlatform --ozone-platform=wayland";
   };
 in {
   # Fancy filesystem navigator
