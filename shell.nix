@@ -30,6 +30,7 @@ let
     dma = "bundle exec rake db:migrate";
     dmr = "bundle exec rake db:rollback";
     vsc = "code . --enable-features=UseOzonePlatform --ozone-platform=wayland";
+    hgl = "hoogle server --local --port 8080 &";
   };
 in {
   # Fancy filesystem navigator
