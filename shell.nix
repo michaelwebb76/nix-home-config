@@ -20,7 +20,7 @@ let
     reload = "NIXPKGS_ALLOW_UNFREE=1 home-manager switch && source ~/.zshrc";
 
     # Nix garbage collection
-    garbage = "nix-collect-garbage -d && docker image prune --force";
+    garbage = "nix-collect-garbage -d";
 
     # See which Nix packages are installed
     installed = "nix-env --query --installed";
@@ -32,7 +32,8 @@ let
     vsc = "code . --enable-features=UseOzonePlatform --ozone-platform=wayland";
     hgl = "hoogle server --local --port 8080 &";
   };
-in {
+in
+{
   # Fancy filesystem navigator
   programs.broot = {
     enable = true;
@@ -74,19 +75,19 @@ in {
     '';
 
     oh-my-zsh = {
-     enable = true;
-     plugins = [
-       "git"
-       "bundler"
-       "gem"
-       "powder"
-       "rake"
-       "themes"
-       "history"
-       "z"
-       "brew"
-     ];
-     theme = "muse";
+      enable = true;
+      plugins = [
+        "git"
+        "bundler"
+        "gem"
+        "powder"
+        "rake"
+        "themes"
+        "history"
+        "z"
+        "brew"
+      ];
+      theme = "muse";
     };
   };
 }

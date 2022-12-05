@@ -1,8 +1,8 @@
 { config, lib, ... }:
 
 let
-  nigpkgsRev = "22.05";
-  pkgs = import (fetchTarball "https://github.com/nixos/nixpkgs/archive/${nigpkgsRev}.tar.gz") {};
+  nigpkgsRev = "22.11";
+  pkgs = import (fetchTarball "https://github.com/nixos/nixpkgs/archive/${nigpkgsRev}.tar.gz") { };
 
   # Import other Nix files
   imports = [
@@ -43,7 +43,8 @@ let
     gh
   ];
 
-in {
+in
+{
   inherit imports;
 
   # Allow non-free (as in beer) packages
@@ -69,7 +70,7 @@ in {
       ControlMaster = "auto";
       IdentityFile = "/home/mike/.ssh/id_rsa";
       IgnoreUnknown = "UseKeychain";
-      TCPKeepAlive= "yes";
+      TCPKeepAlive = "yes";
       UseKeychain = "yes";
     };
     forwardAgent = true;
