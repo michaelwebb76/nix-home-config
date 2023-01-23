@@ -25,11 +25,17 @@ let
     # See which Nix packages are installed
     installed = "nix-env --query --installed";
 
+    # Bundle Rails C
     brc = "bundle exec rails c";
+    # Bundle Rails S
     brs = "bundle exec rails s";
+    # Database MigrAte
     dma = "bundle exec rake db:migrate";
+    # Database (M) Rollback
     dmr = "bundle exec rake db:rollback";
+    # Visual Studio Code
     vsc = "code . --enable-features=UseOzonePlatform --ozone-platform=wayland";
+    # HooGLe server
     hgl = "hoogle server --local --port 8080 &";
   };
 in
