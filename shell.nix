@@ -83,6 +83,8 @@ in
         TOOL_NAME=$1
         clear && cabal build $TOOL_NAME && cabal test $TOOL_NAME && cabal install $TOOL_NAME --overwrite-policy=always
       }
+
+      PATH=$PATH:~/.cabal/bin
     '';
 
     oh-my-zsh = {
