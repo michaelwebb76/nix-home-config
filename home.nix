@@ -1,8 +1,8 @@
 { config, lib, ... }:
 
 let
-  nigpkgsRev = "22.11";
-  pkgs = import (fetchTarball "https://github.com/nixos/nixpkgs/archive/${nigpkgsRev}.tar.gz") { };
+  nixpkgsRev = "23.05";
+  pkgs = import (fetchTarball "https://github.com/nixos/nixpkgs/archive/${nixpkgsRev}.tar.gz") { };
 
   # Import other Nix files
   imports = [
@@ -87,7 +87,7 @@ in
   home = {
     username = "mike";
     homeDirectory = "/home/mike";
-    stateVersion = "21.05";
+    stateVersion = "23.05";
     sessionVariables = {
       EDITOR = "code";
       TERMINAL = "alacritty";
