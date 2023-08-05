@@ -43,7 +43,7 @@ let
     gh
   ];
 
-  autostartPrograms = [ pkgs.albert pkgs.slack ];
+  autostartPrograms = [ pkgs.slack ];
 
 in
 {
