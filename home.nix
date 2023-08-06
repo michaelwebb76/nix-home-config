@@ -84,6 +84,10 @@ in
     serverAliveInterval = 120;
   };
 
+  wayland.windowManager.sway = {
+    enable = true;
+  };
+
   home = {
     username = "mike";
     homeDirectory = "/home/mike";
