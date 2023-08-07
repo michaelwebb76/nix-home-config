@@ -10,7 +10,6 @@ let
     ./neovim.nix
     ./shell.nix
     ./tmux.nix
-    ./vscode.nix
   ];
 
   # Handly shell command to view the dependency tree of Nix packages
@@ -164,7 +163,7 @@ in
       starship # Fancy shell that works with zsh
       terraform # Declarative infrastructure management
       tree # Should be included in macOS but it's not
-      # vscode
+      vscode
       watchman
       wget
       zoom-us
