@@ -63,32 +63,37 @@ in
   };
 
   # Enable Home Manager
-  programs.home-manager.enable = true;
+  programs = {
+    home-manager.enable = true;
 
-  # Enable direnv
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
-  programs.zsh.enable = true;
-  programs.ssh = {
-    controlMaster = "auto";
-    controlPath = "/tmp/ssh_mux_%h_%p_%r";
-    controlPersist = "10";
-    enable = true;
-    extraOptionOverrides = {
-      AddKeysToAgent = "yes";
-      ControlMaster = "auto";
-      IdentityFile = "/home/mike/.ssh/id_rsa";
-      IgnoreUnknown = "UseKeychain";
-      TCPKeepAlive = "yes";
-      UseKeychain = "yes";
+    # Enable direnv
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
     };
-    forwardAgent = true;
-    matchBlocks = {
-      "pumpkin" = {
-        user = "mike";
+
+    zsh.enable = true;
+    ssh = {
+      controlMaster = "auto";
+      controlPath = "/tmp/ssh_mux_%h_%p_%r";
+      controlPersist = "10";
+      enable = true;
+      extraOptionOverrides = {
+        AddKeysToAgent = "yes";
+        ControlMaster = "auto";
+        IdentityFile = "/home/mike/.ssh/id_rsa";
+        IgnoreUnknown = "UseKeychain";
+        TCPKeepAlive = "yes";
+        UseKeychain = "yes";
       };
+      forwardAgent = true;
+      matchBlocks = {
+        "pumpkin" = {
+          user = "mike";
+        };
+      };
+      serverAliveInterval = 120;
     };
-    serverAliveInterval = 120;
   };
 
   wayland.windowManager.sway = {
