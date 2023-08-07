@@ -7,8 +7,6 @@ let
   shellAliases = {
     # Aliases for commonly used tools
     grep = "grep --color=auto";
-    just = "just --no-dotenv";
-    iex = "iex --dot-iex ~/.iex.exs";
     ll = "ls -lh";
     tf = "terraform";
     hms = "home-manager switch";
@@ -22,9 +20,6 @@ let
     # Nix garbage collection
     garbage = "nix-collect-garbage -d";
 
-    # See which Nix packages are installed
-    installed = "nix-env --query --installed";
-
     # Bundle Rails C
     brc = "bundle exec rails c";
     # Bundle Rails S
@@ -34,7 +29,7 @@ let
     # Database (M) Rollback
     dmr = "bundle exec rake db:rollback";
     # Visual Studio Code
-    vsc = "code . --enable-features=UseOzonePlatform --ozone-platform=wayland";
+    vsc = "code --enable-features=UseOzonePlatform --ozone-platform=wayland .";
     # HooGLe server
     hgl = "hoogle server --local --port 8080 &";
   };

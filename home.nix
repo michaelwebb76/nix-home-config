@@ -42,7 +42,7 @@ let
     gh
   ];
 
-  autostartPrograms = [ pkgs.slack ];
+  autostartPrograms = [ pkgs.albert pkgs.slack ];
 
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -100,7 +100,7 @@ in
     homeDirectory = "/home/mike";
     stateVersion = "23.05";
     sessionVariables = {
-      EDITOR = "code";
+      EDITOR = "code --enable-features=UseOzonePlatform --ozone-platform=wayland";
       TERMINAL = "alacritty";
     };
 

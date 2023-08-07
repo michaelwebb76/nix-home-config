@@ -26,7 +26,7 @@ in {
     # Global Git config
     extraConfig = {
       core = {
-        editor = "code --wait";
+        editor = "code --enable-features=UseOzonePlatform --ozone-platform=wayland --wait";
         whitespace = "trailing-space,space-before-tab";
       };
 
