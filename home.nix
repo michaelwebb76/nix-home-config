@@ -100,6 +100,7 @@ in
 
     # Miscellaneous packages (in alphabetical order)
     packages = with pkgs; [
+      awscli2
       cachix # Nix build cache
       curl # An old classic
       dbeaver # Database client
