@@ -29,7 +29,7 @@ let
     # Database (M) Rollback
     dmr = "bundle exec rake db:rollback";
     # Visual Studio Code
-    vsc = "code --enable-features=UseOzonePlatform --ozone-platform=wayland .";
+    vsc = "code .";
     # HooGLe server
     hgl = "hoogle server --local --port 8080 &";
   };
