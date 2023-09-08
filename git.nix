@@ -26,7 +26,7 @@ in {
     # Global Git config
     extraConfig = {
       core = {
-        editor = "code --enable-features=UseOzonePlatform --ozone-platform=wayland --wait";
+        editor = "code --wait";
         whitespace = "trailing-space,space-before-tab";
       };
 
@@ -34,7 +34,7 @@ in {
 
       commit.gpgsign = "true";
       gpg.format = "ssh";
-      user.signingkey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDNl+0Y7ARbG7GQymPnr7gsLiR7oV4nTTiuJlQIoO/8A5j8YL+Sx6K36lTcC1YBA7irSXRqhEQlqm9s2y9A6UmWMQvIkbgsdPUeWT2g5jn6CcrriXgJXMOO84balpG0aQnxjGZXuAJusvlMdQJ7LIKIT06weKVaVDLqk4vW6+zqtPCRt2hp0eINqr4M1qW6xvOD296Y2iSgyrwWshQWis3onwVeZOME6ztpmNgJWfoWBsSCXEvfioBjCsse8f4u4NUZe5m/XiVM7ix5nl+3W+QM0c/EWX/+0hBUJRSGB7y3uQk7JzLPMPYpwgas44bMtGRIe5RrwAs+d4rvSs8b3tU4Vb7PbR42iMFWMeva3Ch7kl+vNYhtHzWqP0yh2Zgkw0ub14KshgwLr8ZfelZ7wW5g/jd/z5y4nhyWqiRLuiZTOMES1zvwrZWrOhAOo5ebsPyGq/jD9H9kWTXY8fJc5ZqSPnPaWEvQCHBVy4lMqXcJCYU7qIavwGj0VO1EUF2unZAZZLSENKL19ftOmGJRZE5AVkZmiiw4AEo5FKsbROtuAFRenxS5Kusbz5tfXID2nLvlDnLgUyfY19G2/l4S9kS4TLSkDRSxawoxOGdb+KK9On3697vl/gYAsVeDrdSOaldCJCAdBAJv2FW/ssGg+7QLlb+7G1phHs2Jx9M2VPx52Q== michaelwebb@192-168-1-108.tpgi.com.au";
+      user.signingkey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDTNv8f/4xn1EVVinl7k1Rrtbg881byLfBotBeIGxj9F9YcTkhmhjkWdvITehrj/pAlmAtxmgK29P0r6BVWFzDoSImnhJe1OhkYx2mYmVKJPDq35scwG1fW3mzTYFIDblC+BzpnQOCS8BQxmvi3S74MyCDvlIltI1MgjKMlf87TlOlGE5dzxiGvC2zxK/NVDI7cKDi8yuja/CBH6wSMDVD2HUzVyvU3gZVeC/nCFYmHvdshS5IwJP6SVQiLDak5FJnqKv48Z2VURF7MCno9klshUxAPf1hT2AoC1Y8nHrQ+WYIupt1QmVGOHwh3MkvNB1rBcBhzAk6pSN0B6/h49bG6jPVz1f8HSjs0h1SZqga3QcNycCg3PCyxaTJaITzL7rsWpk+oMWfpc9hkdTUzVHvE8G2sCfgXWQd+IP8fM7ev3MweH5wk3Z8g/WTYNdtbRQ+EQoYslw3joPBGa0eC5uzmfwReHPR1BQEFA/uQqq/aelE5y2FmhxSJi1QJvXhAo/M= michaelwebb@Michaels-MBP.localdomain";
 
       protocol.keybase.allow = "always";
       credential.helper = "${

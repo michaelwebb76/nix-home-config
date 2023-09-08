@@ -41,17 +41,6 @@ let
   gitTools = with pkgs.gitAndTools; [
     gh
   ];
-
-  autostartPrograms = [ pkgs.albert pkgs.slack ];
-
-  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __NV_PRIME_RENDER_OFFLOAD=1
-    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __VK_LAYER_NV_optimus=NVIDIA_only
-    exec -a "$0" "$@"
-  '';
-
 in
 {
   inherit imports;
@@ -81,7 +70,7 @@ in
       extraOptionOverrides = {
         AddKeysToAgent = "yes";
         ControlMaster = "auto";
-        IdentityFile = "/home/mike/.ssh/id_rsa";
+        IdentityFile = "/Users/michaelwebb/.ssh/id_rsa";
         IgnoreUnknown = "UseKeychain";
         TCPKeepAlive = "yes";
         UseKeychain = "yes";
@@ -96,16 +85,12 @@ in
     };
   };
 
-  wayland.windowManager.sway = {
-    enable = true;
-  };
-
   home = {
-    username = "mike";
-    homeDirectory = "/home/mike";
+    username = "michaelwebb";
+    homeDirectory = "/Users/michaelwebb";
     stateVersion = "23.05";
     sessionVariables = {
-      EDITOR = "code --enable-features=UseOzonePlatform --ozone-platform=wayland";
+      EDITOR = "code";
       TERMINAL = "alacritty";
     };
 
@@ -115,49 +100,26 @@ in
 
     # Miscellaneous packages (in alphabetical order)
     packages = with pkgs; [
-      _1password
-      _1password-gui
-      albert
-      audacity # Audio editor
       cachix # Nix build cache
       curl # An old classic
       dbeaver # Database client
       docker-compose
       fira-code
       fira-mono
-      firefox
       fzf # Fuzzy matching
-      gimp
-      gnome3.gnome-power-manager
-      gnome3.gnome-shell-extensions
-      gnome3.gnome-tweaks
-      gnome3.libgnome-keyring
-      gnomeExtensions.emoji-selector
-      gnomeExtensions.timezones-extension
-      google-chrome
       graphviz # dot
-      haruna
       haskellPackages.cabal-install
       htop # Resource monitoring
-      networkmanagerapplet
       niv # Nix dependency management
       nix-direnv
       nixpkgs-fmt
       nss.tools
-      nvidia-offload
-      obs-studio # Desktop recording
       obsidian # Notes wiki
-      pinentry
-      skypeforlinux
-      slack
-      spotify
       starship # Fancy shell that works with zsh
       terraform # Declarative infrastructure management
       tree # Should be included in macOS but it's not
-      vscode
       watchman
       wget
-      zoom-us
       zsh-z
     ] ++ gitTools ++ scripts;
   };
