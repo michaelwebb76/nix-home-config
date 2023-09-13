@@ -41,6 +41,9 @@ let
   gitTools = with pkgs.gitAndTools; [
     gh
   ];
+
+  userName = "michaelwebb";
+  homePath = "/Users/${userName}";
 in
 {
   inherit imports;
@@ -70,13 +73,16 @@ in
       extraOptionOverrides = {
         AddKeysToAgent = "yes";
         ControlMaster = "auto";
-        IdentityFile = "/Users/michaelwebb/.ssh/id_rsa";
+        IdentityFile = "${homePath}/.ssh/id_rsa";
         IgnoreUnknown = "UseKeychain";
         TCPKeepAlive = "yes";
         UseKeychain = "yes";
       };
       forwardAgent = true;
       matchBlocks = {
+        "bread-staging" = {
+          user = "mike";
+        };
         "pumpkin" = {
           user = "mike";
         };
@@ -86,8 +92,8 @@ in
   };
 
   home = {
-    username = "michaelwebb";
-    homeDirectory = "/Users/michaelwebb";
+    username = "${userName}";
+    homeDirectory = "${homePath}";
     stateVersion = "23.05";
     sessionVariables = {
       EDITOR = "code";
@@ -95,7 +101,15 @@ in
     };
 
     file.".config/cabal/config".text = ''
+      build-summary: ${homePath}/.cache/cabal/logs/build.log
+      extra-prog-path: ${homePath}/.local/bin
+      installdir: ${homePath}/.local/bin
       jobs: $ncpus
+      nix: disable
+      remote-build-reporting: none
+      remote-repo-cache: ${homePath}/.cache/cabal/packages
+      repository hackage.haskell.org
+        url: http://hackage.haskell.org/
     '';
 
     # Miscellaneous packages (in alphabetical order)
