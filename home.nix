@@ -80,10 +80,7 @@ in
       };
       forwardAgent = true;
       matchBlocks = {
-        "bread-staging" = {
-          user = "mike";
-        };
-        "pumpkin" = {
+        "bread-staging.trikeapps.com" = {
           user = "mike";
         };
       };
