@@ -74,6 +74,11 @@ in
       # direnv hook
       eval "$(direnv hook zsh)"
 
+      function hbt() {
+        TOOL_NAME=$1
+        clear && cabal build $TOOL_NAME && cabal test $TOOL_NAME
+      }
+
       function hbti() {
         TOOL_NAME=$1
         clear && cabal build $TOOL_NAME && cabal test $TOOL_NAME && cabal install $TOOL_NAME --overwrite-policy=always
