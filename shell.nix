@@ -84,6 +84,11 @@ in
         clear && cabal build $TOOL_NAME && cabal test $TOOL_NAME && cabal install $TOOL_NAME --overwrite-policy=always
       }
 
+      function hdbg() {
+        TOOL_NAME=$1
+        ghcid -c "cabal repl $TOOL_NAME"
+      }
+
       PATH=$PATH:~/.cabal/bin
     '';
 
