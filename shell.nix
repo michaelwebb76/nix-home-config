@@ -55,8 +55,9 @@ in
       bindkey -e
 
       # Nix setup (environment variables, etc.)
-      if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
-        . ~/.nix-profile/etc/profile.d/nix.sh
+      # https://discourse.nixos.org/t/how-to-restore-nix-and-home-manager-after-macos-upgrade/25474
+      if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
       fi
 
       # Load environment variables from a file; this approach allows me to not
