@@ -90,7 +90,7 @@ in
         ghcid -c "cabal repl $TOOL_NAME"
       }
 
-      PATH=$PATH:~/.cabal/bin
+      PATH=$PATH:~/.local/bin
     '';
 
     oh-my-zsh = {
