@@ -77,17 +77,17 @@ in
 
       function hbt() {
         TOOL_NAME=$1
-        clear && cabal build --ghc-options="-Wall" $TOOL_NAME && cabal test $TOOL_NAME
+        clear && cabal build $TOOL_NAME && cabal test $TOOL_NAME
       }
 
       function hbti() {
         TOOL_NAME=$1
-        clear && cabal build --ghc-options="-Wall" $TOOL_NAME && cabal test $TOOL_NAME && cabal install $TOOL_NAME --overwrite-policy=always
+        clear && cabal build $TOOL_NAME && cabal test $TOOL_NAME && cabal install $TOOL_NAME --overwrite-policy=always
       }
 
       function hdbg() {
         TOOL_NAME=$1
-        ghcid -c "cabal repl --ghc-options="-Wwarn" $TOOL_NAME"
+        ghcid -c "cabal repl $TOOL_NAME"
       }
 
       PATH=$PATH:~/.local/bin

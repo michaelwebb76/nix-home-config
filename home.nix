@@ -115,7 +115,6 @@ in
       cachix # Nix build cache
       curl # An old classic
       dbeaver # Database client
-      docker-compose
       fira-code
       fira-mono
       fzf # Fuzzy matching
