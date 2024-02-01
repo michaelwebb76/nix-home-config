@@ -110,12 +110,34 @@ in
 
   # Let Home Manager install and manage itself.
   programs = {
-    home-manager.enable = true;
-
     # Enable direnv
     direnv = {
       enable = true;
       nix-direnv.enable = true;
+    };
+
+    home-manager.enable = true;
+
+    ssh = {
+      controlMaster = "auto";
+      controlPath = "/tmp/ssh_mux_%h_%p_%r";
+      controlPersist = "10";
+      enable = true;
+      extraOptionOverrides = {
+        AddKeysToAgent = "yes";
+        ControlMaster = "auto";
+        IdentityFile = "${homePath}/.ssh/id_rsa";
+        IgnoreUnknown = "UseKeychain";
+        TCPKeepAlive = "yes";
+        UseKeychain = "yes";
+      };
+      forwardAgent = true;
+      matchBlocks = {
+        "bread-staging.trikeapps.com" = {
+          user = "mike";
+        };
+      };
+      serverAliveInterval = 120;
     };
 
     zsh.enable = true;
