@@ -49,6 +49,10 @@ in
     enableCompletion = true;
     history.extended = true;
 
+    initExtraFirst = ''
+      export ZSH=${pkgs.oh-my-zsh}/share/oh-my-zsh/
+    '';
+
     # Called whenever zsh is initialized
     initExtra = ''
       export TERM="xterm-256color"

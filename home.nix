@@ -8,6 +8,10 @@ let
     ./tmux.nix
   ];
 
+  gitTools = with pkgs.gitAndTools; [
+    gh
+  ];
+
   userName = "michaelwebb";
   homePath = "/Users/${userName}";
 in
@@ -69,7 +73,7 @@ in
       watchman
       wget
       zsh-z
-    ];
+    ] ++ gitTools;
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.
