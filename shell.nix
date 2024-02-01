@@ -79,31 +79,34 @@ in
       # direnv hook
       eval "$(direnv hook zsh)"
 
+      # Build and test a Haskell project
       function hbt() {
         echo "optimization: False" > cabal.project.local
         echo "program-options" >> cabal.project.local
         echo "  ghc-options: -Wall" >> cabal.project.local
 
         TOOL_NAME=$1
-        clear && cabal build $TOOL_NAME && cabal test $TOOL_NAME
+        clear && cabal --builddir=./dist-newstyle build $TOOL_NAME && cabal --builddir=./dist-newstyle test $TOOL_NAME
       }
 
+      # Build, test, and install a Haskell tool
       function hbti() {
         echo "optimization: False" > cabal.project.local
         echo "program-options" >> cabal.project.local
         echo "  ghc-options: -Wall" >> cabal.project.local
 
         TOOL_NAME=$1
-        clear && cabal build $TOOL_NAME && cabal test $TOOL_NAME && cabal install $TOOL_NAME --overwrite-policy=always
+        clear && cabal --builddir=./dist-newstyle build $TOOL_NAME && cabal --builddir=./dist-newstyle test $TOOL_NAME && cabal --builddir=./dist-newstyle install $TOOL_NAME --overwrite-policy=always
       }
 
+      # Debug a Haskell project with ghcid
       function hdbg() {
         echo "optimization: False" > cabal.project.local
         echo "program-options" >> cabal.project.local
         echo "  ghc-options: -Wwarn -Wunused-top-binds -Werror=unused-top-binds" >> cabal.project.local
 
         TOOL_NAME=$1
-        ghcid -c "cabal repl $TOOL_NAME"
+        ghcid -c "cabal --builddir=./dist-newstyle-debug repl $TOOL_NAME"
       }
 
       PATH=$PATH:~/.local/bin
