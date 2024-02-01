@@ -76,16 +76,28 @@ in
       eval "$(direnv hook zsh)"
 
       function hbt() {
+        echo "optimization: False" > cabal.project.local
+        echo "program-options" >> cabal.project.local
+        echo "  ghc-options: -Wall" >> cabal.project.local
+
         TOOL_NAME=$1
         clear && cabal build $TOOL_NAME && cabal test $TOOL_NAME
       }
 
       function hbti() {
+        echo "optimization: False" > cabal.project.local
+        echo "program-options" >> cabal.project.local
+        echo "  ghc-options: -Wall" >> cabal.project.local
+
         TOOL_NAME=$1
         clear && cabal build $TOOL_NAME && cabal test $TOOL_NAME && cabal install $TOOL_NAME --overwrite-policy=always
       }
 
       function hdbg() {
+        echo "optimization: False" > cabal.project.local
+        echo "program-options" >> cabal.project.local
+        echo "  ghc-options: -Wwarn -Wunused-top-binds -Werror=unused-top-binds" >> cabal.project.local
+
         TOOL_NAME=$1
         ghcid -c "cabal repl $TOOL_NAME"
       }
