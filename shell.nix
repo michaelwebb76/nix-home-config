@@ -93,7 +93,7 @@ in
 
       # Build and test a Haskell project
       function hbt() {
-        setCabalProjectLocalToBuild()
+        setCabalProjectLocalToBuild
 
         TOOL_NAME=$1
         clear && cabal --builddir=./dist-newstyle build $TOOL_NAME && cabal --builddir=./dist-newstyle test $TOOL_NAME
@@ -101,7 +101,7 @@ in
 
       # Build, test, and install a Haskell tool
       function hbti() {
-        setCabalProjectLocalToBuild()
+        setCabalProjectLocalToBuild
 
         TOOL_NAME=$1
         clear && cabal --builddir=./dist-newstyle build $TOOL_NAME && cabal --builddir=./dist-newstyle test $TOOL_NAME && cabal --builddir=./dist-newstyle install $TOOL_NAME --overwrite-policy=always
@@ -109,7 +109,7 @@ in
 
       # Debug a Haskell project with ghcid
       function hdbg() {
-        setCabalProjectLocalToDebug()
+        setCabalProjectLocalToDebug
 
         TOOL_NAME=$1
         ghcid -c "cabal --builddir=./dist-newstyle-debug repl $TOOL_NAME"
@@ -117,7 +117,7 @@ in
 
       # Run the Haskell REPL
       function hrepl() {
-        setCabalProjectLocalToDebug()
+        setCabalProjectLocalToDebug
 
         TOOL_NAME=$1
         cabal --builddir=./dist-newstyle-debug repl $TOOL_NAME
