@@ -79,11 +79,21 @@ in
       # direnv hook
       eval "$(direnv hook zsh)"
 
-      # Build and test a Haskell project
-      function hbt() {
+      function setCabalProjectLocalToBuild() {
         echo "optimization: False" > cabal.project.local
         echo "program-options" >> cabal.project.local
         echo "  ghc-options: -Wall" >> cabal.project.local
+      }
+
+      function setCabalProjectLocalToDebug() {
+        echo "optimization: False" > cabal.project.local
+        echo "program-options" >> cabal.project.local
+        echo "  ghc-options: -Wall" >> cabal.project.local
+      }
+
+      # Build and test a Haskell project
+      function hbt() {
+        setCabalProjectLocalToBuild()
 
         TOOL_NAME=$1
         clear && cabal --builddir=./dist-newstyle build $TOOL_NAME && cabal --builddir=./dist-newstyle test $TOOL_NAME
@@ -91,9 +101,7 @@ in
 
       # Build, test, and install a Haskell tool
       function hbti() {
-        echo "optimization: False" > cabal.project.local
-        echo "program-options" >> cabal.project.local
-        echo "  ghc-options: -Wall" >> cabal.project.local
+        setCabalProjectLocalToBuild()
 
         TOOL_NAME=$1
         clear && cabal --builddir=./dist-newstyle build $TOOL_NAME && cabal --builddir=./dist-newstyle test $TOOL_NAME && cabal --builddir=./dist-newstyle install $TOOL_NAME --overwrite-policy=always
@@ -101,12 +109,18 @@ in
 
       # Debug a Haskell project with ghcid
       function hdbg() {
-        echo "optimization: False" > cabal.project.local
-        echo "program-options" >> cabal.project.local
-        echo "  ghc-options: -Wwarn -Wunused-top-binds -Werror=unused-top-binds" >> cabal.project.local
+        setCabalProjectLocalToDebug()
 
         TOOL_NAME=$1
         ghcid -c "cabal --builddir=./dist-newstyle-debug repl $TOOL_NAME"
+      }
+
+      # Run the Haskell REPL
+      function hrepl() {
+        setCabalProjectLocalToDebug()
+
+        TOOL_NAME=$1
+        cabal --builddir=./dist-newstyle-debug repl $TOOL_NAME
       }
 
       PATH=$PATH:~/.local/bin
