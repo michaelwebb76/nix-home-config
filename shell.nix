@@ -88,7 +88,7 @@ in
       function setCabalProjectLocalToDebug() {
         echo "optimization: False" > cabal.project.local
         echo "program-options" >> cabal.project.local
-        echo "  ghc-options: -Wall" >> cabal.project.local
+        echo "  ghc-options: -Wwarn -Wunused-top-binds -Werror=unused-top-binds" >> cabal.project.local
       }
 
       # Build and test a Haskell project
