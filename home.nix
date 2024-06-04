@@ -55,7 +55,6 @@ in
       awscli2
       cachix # Nix build cache
       curl # An old classic
-      dbeaver # Database client
       fira-code
       fira-mono
       fzf # Fuzzy matching

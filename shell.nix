@@ -45,7 +45,7 @@ in
   programs.zsh = {
     inherit shellAliases;
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
     history.extended = true;
 
