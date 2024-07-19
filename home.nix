@@ -116,23 +116,7 @@ in
     # Enable direnv
     direnv = {
       enable = true;
-      nix-direnv = {
-        enable = true;
-        package = pkgs.nix-direnv.override {
-          # 2024-06-05 @Luke Worth 4:04 PM
-          # 2024-06-05 nix-direnv uses the default version of nix by default, which is a version that’s stuffed
-          # 2024-06-05 @mike 4:05 PM
-          # 2024-06-05 Is 2_22 an older version than that one or a newer version?
-          # 2024-06-05 @Luke Worth 4:05 PM
-          # 2024-06-05 It took me a while to work that out
-          # 2024-06-05 It’s newer
-          # 2024-06-05 @mike 4:05 PM
-          # 2024-06-05 Thank you for sharing then
-          # 2024-06-05 @Luke Worth 4:05 PM
-          # 2024-06-05 The dfault is 2.18 or something
-          nix = pkgs.nixVersions.nix_2_22;
-        };
-      };
+      nix-direnv.enable = true;
     };
 
     home-manager.enable = true;
