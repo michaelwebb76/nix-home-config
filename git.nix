@@ -26,7 +26,7 @@ in {
     # Global Git config
     extraConfig = {
       core = {
-        editor = "code --wait";
+        editor = "vi";
         whitespace = "trailing-space,space-before-tab";
       };
 

@@ -91,6 +91,15 @@ in
         echo "  ghc-options: -Wwarn -Wunused-top-binds -Werror=unused-top-binds" >> cabal.project.local
       }
 
+      function setCabalProjectLocalToCoverage() {
+        echo "package *" >> cabal.project.local
+        echo "  coverage: True" >> cabal.project.local
+        echo "  library-coverage: True" >> cabal.project.local
+        echo "package order-processing" >> cabal.project.local
+        echo "  coverage: False" >> cabal.project.local
+        echo "  library-coverage: False" >> cabal.project.local
+      }
+
       # Build and test a Haskell project
       function hbt() {
         setCabalProjectLocalToBuild
@@ -121,6 +130,15 @@ in
 
         TOOL_NAME=$1
         cabal --builddir=./dist-newstyle-debug repl $TOOL_NAME
+      }
+
+      # Run tests with coverage
+      function hbtc() {
+        setCabalProjectLocalToBuild
+        setCabalProjectLocalToCoverage
+
+        TOOL_NAME=$1
+        cabal --builddir=./dist-newstyle-coverage build $TOOL_NAME && cabal --builddir=./dist-newstyle-coverage test $TOOL_NAME
       }
 
       PATH=$PATH:~/.local/bin
