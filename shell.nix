@@ -141,6 +141,14 @@ in
         cabal --builddir=./dist-newstyle-coverage build $TOOL_NAME && cabal --builddir=./dist-newstyle-coverage test $TOOL_NAME
       }
 
+      # Do cabal run
+      function hbr() {
+        setCabalProjectLocalToBuild
+
+        TOOL_NAME=$1
+        cabal --builddir=./dist-newstyle run $TOOL_NAME -- ''${@:2}
+      }
+
       PATH=$PATH:~/.local/bin
     '';
 
