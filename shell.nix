@@ -105,7 +105,7 @@ in
         setCabalProjectLocalToBuild
 
         TOOL_NAME=$1
-        clear && cabal --builddir=./dist-newstyle build $TOOL_NAME && cabal --builddir=./dist-newstyle test $TOOL_NAME
+        clear && cabal --builddir=./dist-build build $TOOL_NAME && cabal --builddir=./dist-build test $TOOL_NAME
       }
 
       # Build, test, and install a Haskell tool
@@ -113,7 +113,7 @@ in
         setCabalProjectLocalToBuild
 
         TOOL_NAME=$1
-        clear && cabal --builddir=./dist-newstyle build $TOOL_NAME && cabal --builddir=./dist-newstyle test $TOOL_NAME && cabal --builddir=./dist-newstyle install $TOOL_NAME --overwrite-policy=always
+        clear && cabal --builddir=./dist-build build $TOOL_NAME && cabal --builddir=./dist-build test $TOOL_NAME && cabal --builddir=./dist-build install $TOOL_NAME --overwrite-policy=always
       }
 
       # Debug a Haskell project with ghcid
@@ -121,7 +121,7 @@ in
         setCabalProjectLocalToDebug
 
         TOOL_NAME=$1
-        ghcid -c "cabal --builddir=./dist-newstyle-debug repl $TOOL_NAME"
+        ghcid -c "cabal --builddir=./dist-debug repl $TOOL_NAME"
       }
 
       # Run the Haskell REPL
@@ -129,7 +129,7 @@ in
         setCabalProjectLocalToDebug
 
         TOOL_NAME=$1
-        cabal --builddir=./dist-newstyle-debug repl $TOOL_NAME
+        cabal --builddir=./dist-debug repl $TOOL_NAME
       }
 
       # Run tests with coverage
@@ -138,7 +138,7 @@ in
         setCabalProjectLocalToCoverage
 
         TOOL_NAME=$1
-        cabal --builddir=./dist-newstyle-coverage build $TOOL_NAME && cabal --builddir=./dist-newstyle-coverage test $TOOL_NAME
+        cabal --builddir=./dist-coverage build $TOOL_NAME && cabal --builddir=./dist-coverage test $TOOL_NAME
       }
 
       # Do cabal run
@@ -146,7 +146,7 @@ in
         setCabalProjectLocalToBuild
 
         TOOL_NAME=$1
-        cabal --builddir=./dist-newstyle run $TOOL_NAME -- ''${@:2}
+        cabal --builddir=./dist-build run $TOOL_NAME -- ''${@:2}
       }
 
       PATH=$PATH:~/.local/bin
