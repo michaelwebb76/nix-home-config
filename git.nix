@@ -2,9 +2,7 @@
 
 { config, lib, pkgs, ... }:
 
-let
-  vscode = pkgs.vscode;
-in {
+{
   programs.git = {
     package = pkgs.gitAndTools.gitFull;
     enable = true;
