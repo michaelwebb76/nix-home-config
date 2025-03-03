@@ -14,6 +14,18 @@ let
 
   userName = "michaelwebb";
   homePath = "/Users/${userName}";
+
+  claudeCode = pkgs.buildNpmPackage {
+    pname = "claude-code";
+    version = "0.0.1";
+    src = /Users/michaelwebb/claude-code;
+    npmDepsHash = "sha256-m4xhqiFSz5bL/TKY6IE5gjuZP4uSsKu+00HlKSErQyE=";
+    dontNpmBuild = true;
+    postInstall = ''
+      mkdir -p "$out/bin"
+      ln -s "$out/lib/node_modules/claude-code/node_modules/@anthropic-ai/claude-code/cli.mjs" "$out/bin/claude"
+    '';
+  };
 in
 {
   inherit imports;
@@ -54,6 +66,7 @@ in
       # '')
       awscli2
       cachix # Nix build cache
+      claudeCode
       curl # An old classic
       fira-code
       fira-mono
