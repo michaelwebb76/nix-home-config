@@ -19,7 +19,7 @@ let
     pname = "claude-code";
     version = "0.0.1";
     src = /Users/michaelwebb/claude-code;
-    npmDepsHash = "sha256-m4xhqiFSz5bL/TKY6IE5gjuZP4uSsKu+00HlKSErQyE=";
+    npmDepsHash = "sha256-asHOKQ47ceUA4Q/T/8j72AQeBUJlfaE/fPlUitD8l4E=";
     dontNpmBuild = true;
     postInstall = ''
       mkdir -p "$out/bin"

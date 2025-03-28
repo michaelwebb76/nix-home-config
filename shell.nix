@@ -15,7 +15,7 @@ let
     szsh = "source ~/.zshrc";
 
     # Reload home manager and zsh
-    reload = "NIXPKGS_ALLOW_UNFREE=1 home-manager switch && source ~/.zshrc";
+    reload = "NIXPKGS_ALLOW_UNFREE=1 home-manager switch --impure && source ~/.zshrc";
 
     # Nix garbage collection
     garbage = "nix-collect-garbage -d";
