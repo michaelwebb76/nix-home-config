@@ -68,6 +68,7 @@ in
       cachix # Nix build cache
       claudeCode
       curl # An old classic
+      dbeaver-bin
       fira-code
       fira-mono
       fzf # Fuzzy matching
@@ -76,6 +77,7 @@ in
       htop # Resource monitoring
       niv # Nix dependency management
       nix-direnv
+      nixfmt-rfc-style
       nixpkgs-fmt
       nss.tools
       obsidian # Notes wiki
