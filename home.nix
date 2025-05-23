@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 
 let
   # Import other Nix files
@@ -15,17 +15,19 @@ let
   userName = "michaelwebb";
   homePath = "/Users/${userName}";
 
-  claudeCode = pkgs.buildNpmPackage {
-    pname = "claude-code";
-    version = "0.0.1";
-    src = /Users/michaelwebb/claude-code;
-    npmDepsHash = "sha256-asHOKQ47ceUA4Q/T/8j72AQeBUJlfaE/fPlUitD8l4E=";
-    dontNpmBuild = true;
-    postInstall = ''
-      mkdir -p "$out/bin"
-      ln -s "$out/lib/node_modules/claude-code/node_modules/@anthropic-ai/claude-code/cli.mjs" "$out/bin/claude"
-    '';
-  };
+  # Until 1.0 makes it to the Darwin channels
+  pkgs-master = inputs.nixpkgs-master.legacyPackages.${pkgs.system};
+  # Until https://github.com/NixOS/nixpkgs/pull/407990 lands in master
+  claude-code = pkgs-master.claude-code.override (old: {
+    version = "20.19.1";
+    sha256 = "5587b23e907d0c7af2ea8a8deb33ec50010453b46dbb3df5987c5678eee5ed51";
+    patches = old.patches ++ [
+      (pkgs.fetchpatch2 {
+        url = "https://github.com/nodejs/node/commit/33f6e1ea296cd20366ab94e666b03899a081af94.patch?full_index=1";
+        hash = "sha256-aVBMcQlhQeviUQpMIfC988jjDB2BgYzlMYsq+w16mzU=";
+      })
+    ];
+  });
 in
 {
   inherit imports;
@@ -66,7 +68,7 @@ in
       # '')
       awscli2
       cachix # Nix build cache
-      claudeCode
+      claude-code
       curl # An old classic
       dbeaver-bin
       fira-code
