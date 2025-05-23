@@ -12,6 +12,8 @@
       # Remove this line when the nix cache is fixed
       rev = "86484f6076aac9141df2bfcddbf7dcfce5e0c6bb";
     };
+    nixpkgs-master.url = "github:nixos/nixpkgs";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
