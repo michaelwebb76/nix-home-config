@@ -15,11 +15,17 @@ let
   userName = "michaelwebb";
   homePath = "/Users/${userName}";
 
+  # 1. cd ~/claude-code;
+  # 2. nix-shell -p nodejs -p node2nix
+  # 3. npm install --package-lock-only @anthropic-ai/claude-code
+  # 4. Update the generated package.json adding name and version
+  # 5. node2nix -l
+  # 6. update the below.
   claudeCode = pkgs.buildNpmPackage {
     pname = "claude-code";
-    version = "0.0.1";
+    version = "1.0.2";
     src = /Users/michaelwebb/claude-code;
-    npmDepsHash = "sha256-asHOKQ47ceUA4Q/T/8j72AQeBUJlfaE/fPlUitD8l4E=";
+    npmDepsHash = "sha256-Diii1tBBzYlB4svlphtu1VAOoijoq9WudxtJFSXXbbE=";
     dontNpmBuild = true;
     postInstall = ''
       mkdir -p "$out/bin"
