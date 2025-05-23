@@ -20,7 +20,8 @@ let
   # 3. npm install --package-lock-only @anthropic-ai/claude-code
   # 4. Update the generated package.json adding name and version
   # 5. node2nix -l
-  # 6. update the below.
+  # 6. set npmDepsHash to an empty string and get the real hash from the error message
+  # 7. update the below.
   claudeCode = pkgs.buildNpmPackage {
     pname = "claude-code";
     version = "1.0.2";
