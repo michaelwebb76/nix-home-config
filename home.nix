@@ -30,7 +30,7 @@ let
     dontNpmBuild = true;
     postInstall = ''
       mkdir -p "$out/bin"
-      ln -s "$out/lib/node_modules/claude-code/node_modules/@anthropic-ai/claude-code/cli.mjs" "$out/bin/claude"
+      ln -s "$out/lib/node_modules/claude-code/node_modules/@anthropic-ai/claude-code/cli.js" "$out/bin/claude"
     '';
   };
 in
@@ -54,47 +54,50 @@ in
 
     # The home.packages option allows you to install Nix packages into your
     # environment.
-    packages = with pkgs; [
-      # # Adds the 'hello' command to your environment. It prints a friendly
-      # # "Hello, world!" when run.
-      # pkgs.hello
+    packages =
+      with pkgs;
+      [
+        # # Adds the 'hello' command to your environment. It prints a friendly
+        # # "Hello, world!" when run.
+        # pkgs.hello
 
-      # # It is sometimes useful to fine-tune packages, for example, by applying
-      # # overrides. You can do that directly here, just don't forget the
-      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-      # # fonts?
-      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+        # # It is sometimes useful to fine-tune packages, for example, by applying
+        # # overrides. You can do that directly here, just don't forget the
+        # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+        # # fonts?
+        # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
-      # # You can also create simple shell scripts directly inside your
-      # # configuration. For example, this adds a command 'my-hello' to your
-      # # environment:
-      # (pkgs.writeShellScriptBin "my-hello" ''
-      #   echo "Hello, ${config.home.username}!"
-      # '')
-      awscli2
-      cachix # Nix build cache
-      claudeCode
-      curl # An old classic
-      dbeaver-bin
-      fira-code
-      fira-mono
-      fzf # Fuzzy matching
-      graphviz # dot
-      haskellPackages.cabal-install
-      htop # Resource monitoring
-      niv # Nix dependency management
-      nix-direnv
-      nixfmt-rfc-style
-      nixpkgs-fmt
-      nss.tools
-      obsidian # Notes wiki
-      starship # Fancy shell that works with zsh
-      terraform # Declarative infrastructure management
-      tree # Should be included in macOS but it's not
-      watchman
-      wget
-      zsh-z
-    ] ++ gitTools;
+        # # You can also create simple shell scripts directly inside your
+        # # configuration. For example, this adds a command 'my-hello' to your
+        # # environment:
+        # (pkgs.writeShellScriptBin "my-hello" ''
+        #   echo "Hello, ${config.home.username}!"
+        # '')
+        awscli2
+        cachix # Nix build cache
+        claudeCode
+        curl # An old classic
+        dbeaver-bin
+        fira-code
+        fira-mono
+        fzf # Fuzzy matching
+        graphviz # dot
+        haskellPackages.cabal-install
+        htop # Resource monitoring
+        niv # Nix dependency management
+        nix-direnv
+        nixfmt-rfc-style
+        nixpkgs-fmt
+        nss.tools
+        obsidian # Notes wiki
+        starship # Fancy shell that works with zsh
+        terraform # Declarative infrastructure management
+        tree # Should be included in macOS but it's not
+        watchman
+        wget
+        zsh-z
+      ]
+      ++ gitTools;
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.
