@@ -1,6 +1,11 @@
 # Shell configuration for zsh (frequently used)
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   # Set all shell aliases programatically
@@ -49,12 +54,9 @@ in
     enableCompletion = true;
     history.extended = true;
 
-    initExtraFirst = ''
-      export ZSH=${pkgs.oh-my-zsh}/share/oh-my-zsh/
-    '';
-
     # Called whenever zsh is initialized
-    initExtra = ''
+    initContent = lib.mkBefore ''
+      export ZSH=${pkgs.oh-my-zsh}/share/oh-my-zsh/
       export TERM="xterm-256color"
       bindkey -e
 

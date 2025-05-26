@@ -15,23 +15,13 @@ let
   userName = "michaelwebb";
   homePath = "/Users/${userName}";
 
-  # 1. cd ~/claude-code;
-  # 2. nix-shell -p nodejs -p node2nix
-  # 3. npm install --package-lock-only @anthropic-ai/claude-code
-  # 4. Update the generated package.json adding name and version
-  # 5. node2nix -l
-  # 6. set npmDepsHash to an empty string and get the real hash from the error message
-  # 7. update the below.
-  claudeCode = pkgs.buildNpmPackage {
-    pname = "claude-code";
+  claude-code = pkgs.claude-code.overrideAttrs rec {
     version = "1.0.2";
-    src = /Users/michaelwebb/claude-code;
+    src = pkgs.fetchzip {
+      url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${version}.tgz";
+      hash = "sha256-mQv2o9uaOZiZSdkNmLiqJs66fe9fiHfEmrXQZwmME34=";
+    };
     npmDepsHash = "sha256-Diii1tBBzYlB4svlphtu1VAOoijoq9WudxtJFSXXbbE=";
-    dontNpmBuild = true;
-    postInstall = ''
-      mkdir -p "$out/bin"
-      ln -s "$out/lib/node_modules/claude-code/node_modules/@anthropic-ai/claude-code/cli.js" "$out/bin/claude"
-    '';
   };
 in
 {
@@ -75,7 +65,7 @@ in
         # '')
         awscli2
         cachix # Nix build cache
-        claudeCode
+        claude-code
         curl # An old classic
         dbeaver-bin
         fira-code
@@ -84,7 +74,6 @@ in
         graphviz # dot
         haskellPackages.cabal-install
         htop # Resource monitoring
-        niv # Nix dependency management
         nix-direnv
         nixfmt-rfc-style
         nixpkgs-fmt

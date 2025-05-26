@@ -3,17 +3,9 @@
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
-    nixpkgs = {
-      type = "github";
-      owner = "NixOS";
-      repo = "nixpkgs";
-      ref = "nixpkgs-24.11-darwin";
-      # Pin to a specific revision that has the packages we need in the cache
-      # Remove this line when the nix cache is fixed
-      rev = "86484f6076aac9141df2bfcddbf7dcfce5e0c6bb";
-    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-25.05-darwin";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
