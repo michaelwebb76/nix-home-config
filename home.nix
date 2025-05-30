@@ -14,15 +14,6 @@ let
 
   userName = "michaelwebb";
   homePath = "/Users/${userName}";
-
-  claude-code = pkgs.claude-code.overrideAttrs rec {
-    version = "1.0.2";
-    src = pkgs.fetchzip {
-      url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${version}.tgz";
-      hash = "sha256-mQv2o9uaOZiZSdkNmLiqJs66fe9fiHfEmrXQZwmME34=";
-    };
-    npmDepsHash = "sha256-Diii1tBBzYlB4svlphtu1VAOoijoq9WudxtJFSXXbbE=";
-  };
 in
 {
   inherit imports;

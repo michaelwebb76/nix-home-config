@@ -1,16 +1,6 @@
 # Nix configuration
 
-This repo houses the [Home Manager](https://github.com/rycee/home-manager) configuration that I use for my macOS laptop. Here are some tools that I install and configure this way:
-
-* Neovim
-* tmux
-* Git
-* zsh and oh my zsh (including aliases and environment variables)
-* curl
-* tree
-* Dhall
-
-This list will surely grow over time as new packages are installed.
+This repo houses the [Home Manager](https://github.com/rycee/home-manager) configuration that I use for my macOS laptop.
 
 ## Debts
 
