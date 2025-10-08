@@ -151,6 +151,52 @@ in
         cabal --builddir=./dist-build run $TOOL_NAME -- ''${@:2}
       }
 
+      # Create git worktree with Haskell project files
+      function gt() {
+        # Check if we're in a git repository root
+        if [[ ! -d .git ]]; then
+          echo "Error: Not in a git repository root directory"
+          return 1
+        fi
+
+        # Require branch name argument
+        if [[ -z "$1" ]]; then
+          echo "Usage: gt <branch-name>"
+          echo "Creates a git worktree and copies Haskell build artifacts if present"
+          return 1
+        fi
+
+        local branch_name="$1"
+        local worktree_path="../$branch_name"
+
+        # Create the git worktree
+        echo "Creating git worktree for branch '$branch_name'..."
+        git worktree add "$worktree_path" "$branch_name"
+
+        if [[ $? -ne 0 ]]; then
+          echo "Failed to create git worktree"
+          return 1
+        fi
+
+        echo "Worktree created at: $worktree_path"
+
+        # Copy cabal.project.local if it exists
+        if [[ -f cabal.project.local ]]; then
+          echo "Copying cabal.project.local..."
+          cp cabal.project.local "$worktree_path/"
+        fi
+
+        # Copy dist directories if they exist
+        for dist_dir in dist-newstyle dist-build dist-debug; do
+          if [[ -d "$dist_dir" ]]; then
+            echo "Copying $dist_dir..."
+            cp -r "$dist_dir" "$worktree_path/"
+          fi
+        done
+
+        echo "Git worktree setup complete!"
+      }
+
       PATH=$PATH:~/.local/bin
     '';
 

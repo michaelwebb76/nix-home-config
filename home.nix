@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 let
   # Import other Nix files
@@ -56,7 +56,7 @@ in
         # '')
         awscli2
         cachix # Nix build cache
-        claude-code
+        pkgs-unstable.claude-code
         curl # An old classic
         dbeaver-bin
         fira-code
