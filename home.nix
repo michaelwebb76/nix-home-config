@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, ... }:
 
 let
   # Import other Nix files
@@ -56,7 +56,13 @@ in
         # '')
         awscli2
         cachix # Nix build cache
-        pkgs-unstable.claude-code
+        (claude-code.overrideAttrs (rec {
+          version = "2.0.14";
+          src = pkgs.fetchzip {
+            url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${version}.tgz";
+            hash = "sha256-U/wd00eva/qbSS4LpW1L7nmPW4dT9naffeMkHQ5xr5o=";
+          };
+        }))
         curl # An old classic
         dbeaver-bin
         fira-code
@@ -68,6 +74,7 @@ in
         nix-direnv
         nixfmt-rfc-style
         nixpkgs-fmt
+        nodejs_22
         nss.tools
         obsidian # Notes wiki
         starship # Fancy shell that works with zsh
