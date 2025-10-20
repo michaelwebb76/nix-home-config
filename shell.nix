@@ -81,72 +81,32 @@ in
       # direnv hook
       eval "$(direnv hook zsh)"
 
-      function setCabalProjectLocalToBuild() {
-        echo "optimization: False" > cabal.project.local
-        echo "program-options" >> cabal.project.local
-        echo "  ghc-options: -Wall" >> cabal.project.local
-      }
-
-      function setCabalProjectLocalToDebug() {
-        echo "optimization: False" > cabal.project.local
-        echo "program-options" >> cabal.project.local
-        echo "  ghc-options: -Wwarn -Wunused-top-binds -Werror=unused-top-binds" >> cabal.project.local
-      }
-
-      function setCabalProjectLocalToCoverage() {
-        echo "package *" >> cabal.project.local
-        echo "  coverage: True" >> cabal.project.local
-        echo "  library-coverage: True" >> cabal.project.local
-        echo "package order-processing" >> cabal.project.local
-        echo "  coverage: False" >> cabal.project.local
-        echo "  library-coverage: False" >> cabal.project.local
-      }
-
       # Build and test a Haskell project
       function hbt() {
-        setCabalProjectLocalToBuild
-
         TOOL_NAME=$1
         clear && cabal --builddir=./dist-build build $TOOL_NAME && cabal --builddir=./dist-build test $TOOL_NAME
       }
 
       # Build, test, and install a Haskell tool
       function hbti() {
-        setCabalProjectLocalToBuild
-
         TOOL_NAME=$1
         clear && cabal --builddir=./dist-build build $TOOL_NAME && cabal --builddir=./dist-build test $TOOL_NAME && cabal --builddir=./dist-build install $TOOL_NAME --overwrite-policy=always
       }
 
       # Debug a Haskell project with ghcid
       function hdbg() {
-        setCabalProjectLocalToDebug
-
         TOOL_NAME=$1
         ghcid -c "cabal --builddir=./dist-debug repl $TOOL_NAME"
       }
 
       # Run the Haskell REPL
       function hrepl() {
-        setCabalProjectLocalToDebug
-
         TOOL_NAME=$1
         cabal --builddir=./dist-debug repl $TOOL_NAME
       }
 
-      # Run tests with coverage
-      function hbtc() {
-        setCabalProjectLocalToBuild
-        setCabalProjectLocalToCoverage
-
-        TOOL_NAME=$1
-        cabal --builddir=./dist-coverage build $TOOL_NAME && cabal --builddir=./dist-coverage test $TOOL_NAME
-      }
-
       # Do cabal run
       function hbr() {
-        setCabalProjectLocalToBuild
-
         TOOL_NAME=$1
         cabal --builddir=./dist-build run $TOOL_NAME -- ''${@:2}
       }
