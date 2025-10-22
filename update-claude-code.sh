@@ -27,7 +27,7 @@ fi
 echo "Current version: $CURRENT_VERSION"
 echo "Updating to: $LATEST_VERSION"
 
-# Download tarball and calculate hash
+# Download tarball and calculate hash for fetchzip
 echo "Calculating hash for version $LATEST_VERSION..."
 TARBALL_URL="https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${LATEST_VERSION}.tgz"
 TEMP_DIR=$(mktemp -d)
@@ -36,9 +36,12 @@ trap "rm -rf $TEMP_DIR" EXIT
 cd "$TEMP_DIR"
 curl -sL "$TARBALL_URL" -o claude-code.tgz
 
-# Calculate SHA256 hash in Nix SRI format
-HASH=$(nix-hash --flat --base32 --type sha256 claude-code.tgz)
-SRI_HASH="sha256-$(nix-hash --to-sri --type sha256 "$HASH")"
+# Extract the tarball (fetchzip hashes the extracted contents, not the tarball)
+tar -xzf claude-code.tgz
+
+# Calculate SHA256 hash in Nix SRI format for the extracted directory
+HASH=$(nix-hash --base32 --type sha256 package)
+SRI_HASH=$(nix-hash --to-sri --type sha256 "$HASH")
 
 echo "Hash: $SRI_HASH"
 
