@@ -84,31 +84,31 @@ in
       # Build and test a Haskell project
       function hbt() {
         TOOL_NAME=$1
-        clear && cabal --builddir=./dist-build build $TOOL_NAME && cabal --builddir=./dist-build test $TOOL_NAME
+        clear && cabal build $TOOL_NAME && cabal test $TOOL_NAME
       }
 
       # Build, test, and install a Haskell tool
       function hbti() {
         TOOL_NAME=$1
-        clear && cabal --builddir=./dist-build build $TOOL_NAME && cabal --builddir=./dist-build test $TOOL_NAME && cabal --builddir=./dist-build install $TOOL_NAME --overwrite-policy=always
+        clear && cabal build $TOOL_NAME && cabal test $TOOL_NAME && cabal install $TOOL_NAME --overwrite-policy=always
       }
 
       # Debug a Haskell project with ghcid
       function hdbg() {
         TOOL_NAME=$1
-        ghcid -c "cabal --builddir=./dist-debug repl $TOOL_NAME"
+        ghcid -c "cabal repl $TOOL_NAME"
       }
 
       # Run the Haskell REPL
       function hrepl() {
         TOOL_NAME=$1
-        cabal --builddir=./dist-debug repl $TOOL_NAME
+        cabal repl $TOOL_NAME
       }
 
       # Do cabal run
       function hbr() {
         TOOL_NAME=$1
-        cabal --builddir=./dist-build run $TOOL_NAME -- ''${@:2}
+        cabal run $TOOL_NAME -- ''${@:2}
       }
 
       # Create git worktree with Haskell project files
@@ -147,7 +147,7 @@ in
         fi
 
         # Copy dist directories if they exist
-        for dist_dir in dist-newstyle dist-build dist-debug; do
+        for dist_dir in dist-newstyle; do
           if [[ -d "$dist_dir" ]]; then
             echo "Copying $dist_dir..."
             cp -r "$dist_dir" "$worktree_path/"
