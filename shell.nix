@@ -127,7 +127,7 @@ in
         fi
 
         local branch_name="$1"
-        local worktree_path="../$branch_name"
+        local worktree_path=".worktrees/$branch_name"
 
         # Create the git worktree
         echo "Creating git worktree for branch '$branch_name'..."
