@@ -57,10 +57,10 @@ in
         awscli2
         cachix # Nix build cache
         (claude-code.overrideAttrs (rec {
-          version = "2.0.30";
+          version = "2.0.34";
           src = pkgs.fetchzip {
             url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${version}.tgz";
-            hash = "sha256-8XpxFnS+d8xYvK21bsVyCz879Gl39i/wDWr6RtEGE3Q=";
+            hash = "sha256-GYykbpvkFTsj7tlsAimDrNbN9kP1+8AtfG+Boch8eSk=";
           };
         }))
         curl # An old classic

@@ -131,7 +131,7 @@ in
 
         # Create the git worktree
         echo "Creating git worktree for branch '$branch_name'..."
-        git worktree add "$worktree_path" "$branch_name"
+        git worktree add -b "$branch_name" "$worktree_path"
 
         if [[ $? -ne 0 ]]; then
           echo "Failed to create git worktree"
