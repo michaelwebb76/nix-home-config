@@ -146,13 +146,17 @@ in
           cp cabal.project.local "$worktree_path/"
         fi
 
-        # Copy dist directories if they exist
-        for dist_dir in dist-newstyle; do
-          if [[ -d "$dist_dir" ]]; then
-            echo "Copying $dist_dir..."
-            cp -r "$dist_dir" "$worktree_path/"
-          fi
-        done
+        # Copy dist directory if it exists
+        if [[ -d dist-newstyle ]]; then
+          echo "Copying dist-newstyle..."
+          cp -r dist-newstyle "$worktree_path/"
+        fi
+
+        # Copy vendor directory if it exists
+        if [[ -d vendor ]]; then
+          echo "Copying vendor..."
+          cp -r vendor "$worktree_path/"
+        fi
 
         echo "Git worktree setup complete!"
       }
