@@ -158,6 +158,13 @@ in
           cp -r vendor "$worktree_path/"
         fi
 
+        # Copy pre-commit config symlink if it exists
+        if [[ -L .pre-commit-config.yaml ]]; then
+          echo "Copying .pre-commit-config.yaml symlink..."
+          local target=$(readlink .pre-commit-config.yaml)
+          ln -sf "$target" "$worktree_path/.pre-commit-config.yaml"
+        fi
+
         echo "Git worktree setup complete!"
       }
 
