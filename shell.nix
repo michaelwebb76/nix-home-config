@@ -96,13 +96,13 @@ in
       # Debug a Haskell project with ghcid
       function hdbg() {
         TOOL_NAME=$1
-        ghcid -c "cabal repl $TOOL_NAME"
+        ghcid -c "cabal repl --enable-multi-repl --ghc-options=-Wwarn --builddir=./dist-debug $TOOL_NAME"
       }
 
       # Run the Haskell REPL
       function hrepl() {
         TOOL_NAME=$1
-        cabal repl $TOOL_NAME
+        cabal repl --enable-multi-repl --ghc-options=-Wwarn --builddir=./dist-debug $TOOL_NAME
       }
 
       # Do cabal run
