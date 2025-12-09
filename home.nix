@@ -8,10 +8,6 @@ let
     ./tmux.nix
   ];
 
-  gitTools = with pkgs.gitAndTools; [
-    gh
-  ];
-
   userName = "michaelwebb";
   homePath = "/Users/${userName}";
 in
@@ -35,56 +31,55 @@ in
 
     # The home.packages option allows you to install Nix packages into your
     # environment.
-    packages =
-      with pkgs;
-      [
-        # # Adds the 'hello' command to your environment. It prints a friendly
-        # # "Hello, world!" when run.
-        # pkgs.hello
+    packages = with pkgs; [
+      # # Adds the 'hello' command to your environment. It prints a friendly
+      # # "Hello, world!" when run.
+      # pkgs.hello
 
-        # # It is sometimes useful to fine-tune packages, for example, by applying
-        # # overrides. You can do that directly here, just don't forget the
-        # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-        # # fonts?
-        # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+      # # It is sometimes useful to fine-tune packages, for example, by applying
+      # # overrides. You can do that directly here, just don't forget the
+      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+      # # fonts?
+      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
-        # # You can also create simple shell scripts directly inside your
-        # # configuration. For example, this adds a command 'my-hello' to your
-        # # environment:
-        # (pkgs.writeShellScriptBin "my-hello" ''
-        #   echo "Hello, ${config.home.username}!"
-        # '')
-        awscli2
-        cachix # Nix build cache
-        (claude-code.overrideAttrs (rec {
-          version = "2.0.55";
-          src = pkgs.fetchzip {
-            url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${version}.tgz";
-            hash = "sha256-wsjOkNxuBLMYprjaZQyUZHiqWl8UG7cZ1njkyKZpRYg=";
-          };
-        }))
-        curl # An old classic
-        dbeaver-bin
-        fira-code
-        fira-mono
-        fzf # Fuzzy matching
-        graphviz # dot
-        haskellPackages.cabal-install
-        htop # Resource monitoring
-        nix-direnv
-        nixfmt-rfc-style
-        nixpkgs-fmt
-        nodejs_22
-        nss.tools
-        obsidian # Notes wiki
-        starship # Fancy shell that works with zsh
-        terraform # Declarative infrastructure management
-        tree # Should be included in macOS but it's not
-        watchman
-        wget
-        zsh-z
-      ]
-      ++ gitTools;
+      # # You can also create simple shell scripts directly inside your
+      # # configuration. For example, this adds a command 'my-hello' to your
+      # # environment:
+      # (pkgs.writeShellScriptBin "my-hello" ''
+      #   echo "Hello, ${config.home.username}!"
+      # '')
+      awscli2
+      cachix # Nix build cache
+      (claude-code.overrideAttrs (rec {
+        version = "2.0.55";
+        src = pkgs.fetchzip {
+          url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${version}.tgz";
+          hash = "sha256-wsjOkNxuBLMYprjaZQyUZHiqWl8UG7cZ1njkyKZpRYg=";
+        };
+      }))
+      curl # An old classic
+      dbeaver-bin
+      fira-code
+      fira-mono
+      fzf # Fuzzy matching
+      gh
+      git
+      graphviz # dot
+      haskellPackages.cabal-install
+      htop # Resource monitoring
+      nix-direnv
+      nixfmt-rfc-style
+      nixpkgs-fmt
+      nodejs_22
+      nss.tools
+      obsidian # Notes wiki
+      starship # Fancy shell that works with zsh
+      terraform # Declarative infrastructure management
+      tree # Should be included in macOS but it's not
+      watchman
+      wget
+      zsh-z
+    ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.
@@ -134,25 +129,35 @@ in
     home-manager.enable = true;
 
     ssh = {
-      controlMaster = "auto";
-      controlPath = "/tmp/ssh_mux_%h_%p_%r";
-      controlPersist = "10";
       enable = true;
+      enableDefaultConfig = false;
       extraOptionOverrides = {
         AddKeysToAgent = "yes";
-        ControlMaster = "auto";
         IdentityFile = "${homePath}/.ssh/id_rsa";
         IgnoreUnknown = "UseKeychain";
         TCPKeepAlive = "yes";
         UseKeychain = "yes";
       };
-      forwardAgent = true;
       matchBlocks = {
         "bread-staging.trikeapps.com" = {
+          controlMaster = "auto";
+          serverAliveInterval = 120;
           user = "mike";
         };
+
+        "*" = {
+          addKeysToAgent = "no";
+          compression = false;
+          controlPath = "/tmp/ssh_mux_%h_%p_%r";
+          controlPersist = "10";
+          controlMaster = "auto";
+          forwardAgent = true;
+          hashKnownHosts = false;
+          serverAliveCountMax = 3;
+          serverAliveInterval = 120;
+          userKnownHostsFile = "~/.ssh/known_hosts";
+        };
       };
-      serverAliveInterval = 120;
     };
 
     zsh.enable = true;
