@@ -51,10 +51,10 @@ in
       awscli2
       cachix # Nix build cache
       (claude-code.overrideAttrs (rec {
-        version = "2.1.29";
+        version = "2.1.37";
         src = pkgs.fetchzip {
           url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${version}.tgz";
-          hash = "sha256-bRXULCl5F87SWEcsD9S8ZaBrEK2QtK/GEhpEFR1CMWQ=";
+          hash = "sha256-ijyZCT4LEEtXWOBds8WzizcfED9hVgaJByygJ4P4Yss=";
         };
       }))
       curl # An old classic
