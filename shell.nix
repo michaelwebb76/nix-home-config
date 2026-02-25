@@ -46,6 +46,20 @@ in
     enableZshIntegration = true;
   };
 
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      time = {
+        disabled = false;
+        format = "[$time]($style) ";
+        time_format = "%T"; # 24-hour format HH:MM:SS
+        style = "bold yellow";
+      };
+      right_format = "$time";
+    };
+  };
+
   # zsh settings
   programs.zsh = {
     inherit shellAliases;
@@ -72,13 +86,7 @@ in
         . ~/.env
       fi
 
-      # Start up Starship shell
-      eval "$(starship init zsh)"
-
       # direnv setup
-      eval "$(direnv hook zsh)"
-
-      # direnv hook
       eval "$(direnv hook zsh)"
 
       # Build and test a Haskell project
