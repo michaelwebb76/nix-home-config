@@ -14,13 +14,21 @@
     ];
 
     userSettings = {
+      vim_mode = true;
+
       # Font settings (matching VSCode Fira Code with ss09 ligatures)
       buffer_font_family = "Fira Code";
       buffer_font_features = {
         ss09 = true;
       };
-      buffer_font_size = 14;
-      ui_font_size = 15;
+      buffer_font_size = 16;
+      ui_font_size = 16;
+
+      theme = {
+        mode = "system";
+        light = "One Light";
+        dark = "One Dark";
+      };
 
       # Auto-save on focus change (matching VSCode files.autoSave: onFocusChange)
       autosave = "on_focus_change";
@@ -39,6 +47,9 @@
       wrap_guides = [ 80 ];
 
       tab_size = 2;
+
+      # Load direnv via shell hook
+      load_direnv = "shell_hook";
 
       # Disable preview tabs (matching VSCode workbench.editor.enablePreview: false)
       preview_tabs = {
@@ -64,7 +75,24 @@
 
       telemetry = {
         metrics = false;
-        diagnostics = false;
+      };
+
+      language_models = {
+        anthropic = {
+          version = "1";
+        };
+      };
+
+      features = {
+        edit_prediction_provider = "none";
+      };
+
+      assistant = {
+        default_model = {
+          provider = "anthropic";
+          model = "claude-sonnet-4-20250514";
+        };
+        version = "2";
       };
 
       git = {
@@ -140,6 +168,21 @@
         };
         HTML = {
           format_on_save = "off";
+        };
+        Python = {
+          language_servers = [
+            "pyright"
+            "ruff"
+          ];
+          formatter = {
+            external = {
+              command = "ruff";
+              arguments = [
+                "format"
+                "-"
+              ];
+            };
+          };
         };
       };
     };
