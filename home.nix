@@ -6,7 +6,6 @@ let
     ./git.nix
     ./shell.nix
     ./tmux.nix
-    ./zed.nix
   ];
 
   userName = "michaelwebb";
@@ -78,6 +77,7 @@ in
       terraform # Declarative infrastructure management
       tree # Should be included in macOS but it's not
       watchman
+      zed-editor
       wget
       zsh-z
     ];
