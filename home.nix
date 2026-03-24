@@ -1,4 +1,9 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{
+  config,
+  pkgs,
+  pkgs-unstable,
+  ...
+}:
 
 let
   # Import other Nix files
@@ -6,6 +11,7 @@ let
     ./git.nix
     ./shell.nix
     ./tmux.nix
+    ./zed.nix
   ];
 
   userName = "michaelwebb";
