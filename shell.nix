@@ -89,33 +89,58 @@ in
       # direnv setup
       eval "$(direnv hook zsh)"
 
+      # Copy dist folders from the main worktree if they're not already present
+      function _ensure_dist() {
+        local main_worktree
+        main_worktree=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null | sed 's|/\.git$||')
+        if [[ -z "$main_worktree" ]]; then
+          return 0
+        fi
+        local current_dir
+        current_dir=$(pwd)
+        if [[ "$current_dir" == "$main_worktree" ]]; then
+          return 0
+        fi
+        for dist_dir in dist-newstyle dist-debug; do
+          if [[ ! -d "$dist_dir" && -d "$main_worktree/$dist_dir" ]]; then
+            echo "Copying $dist_dir from main worktree..."
+            cp -r "$main_worktree/$dist_dir" "$dist_dir"
+          fi
+        done
+      }
+
       # Build and test a Haskell project
       function hbt() {
         TOOL_NAME=$1
+        _ensure_dist
         clear && cabal build $TOOL_NAME && cabal test $TOOL_NAME
       }
 
       # Build, test, and install a Haskell tool
       function hbti() {
         TOOL_NAME=$1
+        _ensure_dist
         clear && cabal build $TOOL_NAME && cabal test $TOOL_NAME && cabal install $TOOL_NAME --overwrite-policy=always
       }
 
       # Debug a Haskell project with ghcid
       function hdbg() {
         TOOL_NAME=$1
+        _ensure_dist
         ghcid -c "cabal repl --enable-multi-repl --ghc-options=-Wwarn --builddir=./dist-debug $TOOL_NAME"
       }
 
       # Run the Haskell REPL
       function hrepl() {
         TOOL_NAME=$1
+        _ensure_dist
         cabal repl --enable-multi-repl --ghc-options=-Wwarn --builddir=./dist-debug $TOOL_NAME
       }
 
       # Do cabal run
       function hbr() {
         TOOL_NAME=$1
+        _ensure_dist
         cabal run $TOOL_NAME -- ''${@:2}
       }
 
