@@ -164,7 +164,13 @@ let
 in
 {
   home.file = {
-    ".config/zed/settings.json".text = settingsJson;
-    ".config/zed/keymap.json".text = keymapJson;
+    ".config/zed/settings.json" = {
+      text = settingsJson;
+      force = true;
+    };
+    ".config/zed/keymap.json" = {
+      text = keymapJson;
+      force = true;
+    };
   };
 }
