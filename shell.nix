@@ -201,6 +201,36 @@ in
         echo "Git worktree setup complete!"
       }
 
+      # Copy .envrc and .direnv from the main worktree if they're not already present
+      function direnvy() {
+        local main_worktree
+        main_worktree=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null | sed 's|/\.git$||')
+        if [[ -z "$main_worktree" ]]; then
+          echo "Error: Not in a git repository"
+          return 1
+        fi
+        local current_dir
+        current_dir=$(pwd)
+        if [[ "$current_dir" == "$main_worktree" ]]; then
+          echo "Already in the main worktree, nothing to copy"
+          return 0
+        fi
+        local copied=0
+        if [[ ! -e .envrc && -e "$main_worktree/.envrc" ]]; then
+          echo "Copying .envrc from main worktree..."
+          cp "$main_worktree/.envrc" .envrc
+          copied=1
+        fi
+        if [[ ! -e .direnv && -d "$main_worktree/.direnv" ]]; then
+          echo "Copying .direnv from main worktree..."
+          cp -r "$main_worktree/.direnv" .direnv
+          copied=1
+        fi
+        if [[ $copied -eq 0 ]]; then
+          echo ".envrc and .direnv already exist (or not present in main worktree), nothing to copy"
+        fi
+      }
+
       PATH=$PATH:~/.local/bin
     '';
 
