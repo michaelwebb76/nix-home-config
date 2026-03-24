@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 let
   # Import other Nix files
@@ -77,7 +77,7 @@ in
       terraform # Declarative infrastructure management
       tree # Should be included in macOS but it's not
       watchman
-      zed-editor
+      pkgs-unstable.zed-editor
       wget
       zsh-z
     ];
