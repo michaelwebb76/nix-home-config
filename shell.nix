@@ -201,7 +201,7 @@ in
         echo "Git worktree setup complete!"
       }
 
-      # Copy .envrc and .direnv from the main worktree if they're not already present
+      # Symlink .envrc and .direnv from the main worktree if they're not already present
       function direnvy() {
         local main_worktree
         main_worktree=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null | sed 's|/\.git$||')
@@ -212,22 +212,16 @@ in
         local current_dir
         current_dir=$(pwd)
         if [[ "$current_dir" == "$main_worktree" ]]; then
-          echo "Already in the main worktree, nothing to copy"
+          echo "Already in the main worktree, nothing to symlink"
           return 0
         fi
-        local copied=0
         if [[ ! -e .envrc && -e "$main_worktree/.envrc" ]]; then
-          echo "Copying .envrc from main worktree..."
-          cp "$main_worktree/.envrc" .envrc
-          copied=1
-        fi
-        if [[ ! -e .direnv && -d "$main_worktree/.direnv" ]]; then
-          echo "Copying .direnv from main worktree..."
-          cp -r "$main_worktree/.direnv" .direnv
-          copied=1
-        fi
-        if [[ $copied -eq 0 ]]; then
-          echo ".envrc and .direnv already exist (or not present in main worktree), nothing to copy"
+          echo "Symlinking .envrc from main worktree..."
+          ln -s "$main_worktree/.envrc" .envrc
+          echo "Running direnv allow..."
+          direnv allow
+        else
+          echo ".envrc already exists (or not present in main worktree), nothing to symlink"
         fi
       }
 
