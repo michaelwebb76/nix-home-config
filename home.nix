@@ -8,6 +8,7 @@
 let
   # Import other Nix files
   imports = [
+    ./brew.nix
     ./git.nix
     ./shell.nix
     ./tmux.nix
@@ -38,54 +39,16 @@ in
     # The home.packages option allows you to install Nix packages into your
     # environment.
     packages = with pkgs; [
-      # # Adds the 'hello' command to your environment. It prints a friendly
-      # # "Hello, world!" when run.
-      # pkgs.hello
-
-      # # It is sometimes useful to fine-tune packages, for example, by applying
-      # # overrides. You can do that directly here, just don't forget the
-      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-      # # fonts?
-      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-      # # You can also create simple shell scripts directly inside your
-      # # configuration. For example, this adds a command 'my-hello' to your
-      # # environment:
-      # (pkgs.writeShellScriptBin "my-hello" ''
-      #   echo "Hello, ${config.home.username}!"
-      # '')
-      awscli2
+      # Nix-specific packages (not practical to install via Homebrew)
       cachix # Nix build cache
-      (claude-code.overrideAttrs (rec {
-        version = "2.1.37";
-        src = pkgs.fetchzip {
-          url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${version}.tgz";
-          hash = "sha256-ijyZCT4LEEtXWOBds8WzizcfED9hVgaJByygJ4P4Yss=";
-        };
-      }))
-      curl # An old classic
-      dbeaver-bin
-      fira-code
-      fira-mono
-      fzf # Fuzzy matching
-      gh
-      git
-      graphviz # dot
-      haskellPackages.cabal-install
-      htop # Resource monitoring
       nix-direnv
-      nixfmt-rfc-style
       nixpkgs-fmt
-      nodejs_22
-      nss.tools
-      obsidian # Notes wiki
-      starship # Fancy shell that works with zsh
-      terraform # Declarative infrastructure management
-      tree # Should be included in macOS but it's not
-      watchman
-      pkgs-unstable.zed-editor
-      wget
+      terraform # Deprecated in Homebrew due to BUSL license
       zsh-z
+
+      # Everything else is installed via Homebrew.
+      # Declared in brew.nix, which generates ~/.Brewfile.
+      # After `home-manager switch`, sync with: brew bundle --global
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -127,7 +90,7 @@ in
 
   # Let Home Manager install and manage itself.
   programs = {
-    # Enable direnv
+    # Enable direnv config generation; binary installed via Homebrew
     direnv = {
       enable = true;
       nix-direnv.enable = true;

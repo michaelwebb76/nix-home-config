@@ -20,7 +20,7 @@ let
     szsh = "source ~/.zshrc";
 
     # Reload home manager and zsh
-    reload = "NIXPKGS_ALLOW_UNFREE=1 home-manager switch --impure --extra-experimental-features nix-command && source ~/.zshrc";
+    reload = "NIXPKGS_ALLOW_UNFREE=1 home-manager switch --impure --extra-experimental-features nix-command && brew bundle --global && source ~/.zshrc";
 
     # Nix garbage collection
     garbage = "nix-collect-garbage -d";
@@ -40,25 +40,18 @@ let
   };
 in
 {
-  # Fancy filesystem navigator
-  programs.broot = {
-    enable = true;
-    enableZshIntegration = true;
-  };
+  # broot and starship are installed via Homebrew; configure them below.
 
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = {
-      time = {
-        disabled = false;
-        format = "[$time]($style) ";
-        time_format = "%T"; # 24-hour format HH:MM:SS
-        style = "bold yellow";
-      };
-      right_format = "$time";
-    };
-  };
+  # Starship prompt configuration
+  home.file.".config/starship.toml".text = ''
+    right_format = "$time"
+
+    [time]
+    disabled = false
+    format = "[$time]($style) "
+    time_format = "%T"
+    style = "bold yellow"
+  '';
 
   # zsh settings
   programs.zsh = {
@@ -73,6 +66,14 @@ in
       export ZSH=${pkgs.oh-my-zsh}/share/oh-my-zsh/
       export TERM="xterm-256color"
       bindkey -e
+
+      # Broot shell integration (installed via Homebrew)
+      if [ -f "$HOME/Library/Application Support/org.dystroy.broot/launcher/bash/br" ]; then
+        source "$HOME/Library/Application Support/org.dystroy.broot/launcher/bash/br"
+      fi
+
+      # Starship prompt (installed via Homebrew)
+      eval "$(starship init zsh)"
 
       # Nix setup (environment variables, etc.)
       # https://discourse.nixos.org/t/how-to-restore-nix-and-home-manager-after-macos-upgrade/25474

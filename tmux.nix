@@ -1,40 +1,42 @@
 # tmux settings
-
-{ config, lib, pkgs, ... }:
+# Generates ~/.tmux.conf so the Homebrew-installed tmux picks it up.
 
 {
-  programs.tmux = {
-    enable = true;
-    escapeTime = 0;
-    baseIndex = 1;
-    keyMode = "vi";
-    shortcut = "b";
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
-    # Replaces ~/.tmux.conf
-    extraConfig = ''
-      set-option -g mouse on
-      set-option -g default-shell ''${SHELL}
+{
+  home.file.".tmux.conf".text = ''
+    set-option -g escape-time 0
+    set-option -g base-index 1
+    set-option -g mode-keys vi
+    set-option -g prefix C-b
 
-      set -g mode-keys emacs
-      set -g status-keys emacs
+    set-option -g mouse on
+    set-option -g default-shell ''${SHELL}
 
-      bind Escape copy-mode
+    set -g mode-keys emacs
+    set -g status-keys emacs
 
-      bind | split-window -h -c "#{pane_current_path}"
-      bind - split-window -v -c "#{pane_current_path}"
-      bind c new-window -c "#{pane_current_path}"
+    bind Escape copy-mode
 
-      bind h select-pane -L
-      bind j select-pane -D
-      bind k select-pane -U
-      bind l select-pane -R
+    bind | split-window -h -c "#{pane_current_path}"
+    bind - split-window -v -c "#{pane_current_path}"
+    bind c new-window -c "#{pane_current_path}"
 
-      bind-key J resize-pane -D 5
-      bind-key K resize-pane -U 5
-      bind-key H resize-pane -L 5
-      bind-key L resize-pane -R 5
+    bind h select-pane -L
+    bind j select-pane -D
+    bind k select-pane -U
+    bind l select-pane -R
 
-      bind N previous-window
-    '';
-  };
+    bind-key J resize-pane -D 5
+    bind-key K resize-pane -U 5
+    bind-key H resize-pane -L 5
+    bind-key L resize-pane -R 5
+
+    bind N previous-window
+  '';
 }
