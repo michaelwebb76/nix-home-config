@@ -22,8 +22,8 @@ let
     # Reload home manager and zsh
     reload = "NIXPKGS_ALLOW_UNFREE=1 home-manager switch --impure --extra-experimental-features nix-command && brew bundle --global && source ~/.zshrc";
 
-    # Nix garbage collection
-    garbage = "nix-collect-garbage -d";
+    # Nix garbage collection + Homebrew cleanup
+    garbage = "nix-collect-garbage -d && brew cleanup";
 
     # Bundle Rails C
     brc = "bundle exec rails c";
@@ -33,8 +33,6 @@ let
     dma = "bundle exec rake db:migrate";
     # Database (M) Rollback
     dmr = "bundle exec rake db:rollback";
-    # Zed editor
-    zed = "zeditor .";
     # HooGLe server
     hgl = "hoogle server --local --port 8080 &";
   };
