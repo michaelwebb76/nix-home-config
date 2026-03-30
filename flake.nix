@@ -9,8 +9,7 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Creates .app bundles for Nix apps so they appear in Spotlight/Alfred
-    mac-app-util.url = "github:hraban/mac-app-util";
+
   };
 
   outputs =
@@ -18,7 +17,6 @@
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
-      mac-app-util,
       ...
     }:
     let
@@ -33,7 +31,6 @@
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
         modules = [
-          mac-app-util.homeManagerModules.default
           ./home.nix
         ];
 

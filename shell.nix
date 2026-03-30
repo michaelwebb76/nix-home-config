@@ -67,6 +67,11 @@ in
       export TERM="xterm-256color"
       bindkey -e
 
+      # Homebrew setup (must come before any Homebrew-installed tool init)
+      if [ -e '/opt/homebrew/bin/brew' ]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+      fi
+
       # Broot shell integration (installed via Homebrew)
       if [ -f "$HOME/Library/Application Support/org.dystroy.broot/launcher/bash/br" ]; then
         source "$HOME/Library/Application Support/org.dystroy.broot/launcher/bash/br"
