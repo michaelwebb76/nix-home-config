@@ -12,7 +12,6 @@ let
     ./git.nix
     ./shell.nix
     ./tmux.nix
-    ./zed.nix
   ];
 
   userName = "michaelwebb";
