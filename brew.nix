@@ -35,6 +35,7 @@ let
   casks = [
     "claude-code"
     "dbeaver-community"
+    "docker"
     "font-fira-code"
     "font-fira-mono"
     "obsidian"
