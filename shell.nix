@@ -229,6 +229,38 @@ in
         fi
       }
 
+      # Remove a git worktree, its directory, and its branch
+      function kill-worktree() {
+        if [[ -z "$1" ]]; then
+          echo "Usage: kill-worktree <worktree-name>"
+          return 1
+        fi
+
+        local branch_name="$1"
+
+        # Find the worktree path from git
+        local worktree_path
+        worktree_path=$(git worktree list --porcelain | awk -v branch="refs/heads/$branch_name" '/^worktree /{wt=$0; sub(/^worktree /, "", wt)} /^branch /{if ($2 == branch) print wt}')
+
+        if [[ -z "$worktree_path" ]]; then
+          echo "Error: No worktree found for branch '$branch_name'"
+          return 1
+        fi
+
+        echo "Removing worktree at: $worktree_path"
+        git worktree remove "$worktree_path" --force
+
+        if [[ -d "$worktree_path" ]]; then
+          echo "Directory still exists, removing: $worktree_path"
+          rm -rf "$worktree_path"
+        fi
+
+        echo "Deleting branch: $branch_name"
+        git branch -D "$branch_name"
+
+        echo "Done! Worktree and branch '$branch_name' removed."
+      }
+
       PATH=$PATH:~/.local/bin
     '';
 
