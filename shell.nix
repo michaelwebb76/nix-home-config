@@ -255,6 +255,13 @@ in
           rm -rf "$worktree_path"
         fi
 
+        local parent_dir
+        parent_dir=$(dirname "$worktree_path")
+        if [[ -d "$parent_dir" ]] && [[ -z "$(ls -A "$parent_dir")" ]]; then
+          echo "Parent directory is empty, removing: $parent_dir"
+          rmdir "$parent_dir"
+        fi
+
         echo "Deleting branch: $branch_name"
         git branch -D "$branch_name"
 
