@@ -1,0 +1,9 @@
+[
+  {
+    "bindings": {
+      "cmd-shift-d": "editor::DuplicateLineDown",
+      "cmd-y": "editor::Redo"
+    },
+    "context": "Editor"
+  }
+]
