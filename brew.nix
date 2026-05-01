@@ -25,6 +25,7 @@ let
     "nixfmt"
     "node@22"
     "nss"
+    "prettier"
     "starship"
     "tmux"
     "tree"
