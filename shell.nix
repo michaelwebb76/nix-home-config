@@ -113,32 +113,34 @@ in
         done
       }
 
+      # Build a Haskell project
+      function hb() {
+        _ensure_dist
+        clear && cabal build "$@"
+      }
+
       # Build and test a Haskell project
       function hbt() {
-        TOOL_NAME=$1
         _ensure_dist
-        clear && cabal build $TOOL_NAME && cabal test $TOOL_NAME
+        clear && cabal build "$@" && cabal test "$@"
       }
 
       # Build, test, and install a Haskell tool
       function hbti() {
-        TOOL_NAME=$1
         _ensure_dist
-        clear && cabal build $TOOL_NAME && cabal test $TOOL_NAME && cabal install $TOOL_NAME --overwrite-policy=always
+        clear && cabal build "$@" && cabal test "$@" && cabal install "$@" --overwrite-policy=always
       }
 
       # Debug a Haskell project with ghcid
       function hdbg() {
-        TOOL_NAME=$1
         _ensure_dist
-        ghcid -c "cabal repl --enable-multi-repl --ghc-options=-Wwarn --builddir=./dist-debug $TOOL_NAME"
+        ghcid -c "cabal repl --enable-multi-repl --ghc-options=-Wwarn --builddir=./dist-debug $@"
       }
 
       # Run the Haskell REPL
       function hrepl() {
-        TOOL_NAME=$1
         _ensure_dist
-        cabal repl --enable-multi-repl --ghc-options=-Wwarn --builddir=./dist-debug $TOOL_NAME
+        cabal repl --enable-multi-repl --ghc-options=-Wwarn --builddir=./dist-debug "$@"
       }
 
       # Do cabal run
