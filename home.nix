@@ -41,6 +41,7 @@ in
     packages = with pkgs; [
       # Nix-specific packages (not practical to install via Homebrew)
       cachix # Nix build cache
+      coreutils # GNU coreutils (provides readlink -e, required by home-manager on macOS)
       nix-direnv
       nixpkgs-fmt
       terraform # Deprecated in Homebrew due to BUSL license

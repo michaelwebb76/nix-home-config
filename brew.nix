@@ -40,6 +40,7 @@ let
     "font-fira-code"
     "font-fira-mono"
     "obsidian"
+    "rectangle"
     "zed"
   ];
 
@@ -52,4 +53,11 @@ let
 in
 {
   home.file.".Brewfile".text = brewfileContent;
+
+  home.activation.installHomebrew = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    if [[ ! -f /opt/homebrew/bin/brew && ! -f /usr/local/bin/brew ]]; then
+      export PATH="/usr/bin:/bin:$PATH"
+      $DRY_RUN_CMD /bin/bash -c "$(/usr/bin/curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+  '';
 }
