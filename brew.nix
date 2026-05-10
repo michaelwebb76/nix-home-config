@@ -40,6 +40,7 @@ let
     "font-fira-code"
     "font-fira-mono"
     "obsidian"
+    "postgres-app"
     "rectangle"
     "zed"
   ];
