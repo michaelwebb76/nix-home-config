@@ -44,6 +44,7 @@ let
     "obsidian"
     "postgres-app"
     "rectangle"
+    "wealthfolio"
     "zed"
   ];
 
