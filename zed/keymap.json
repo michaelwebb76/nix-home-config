@@ -5,5 +5,14 @@
       "cmd-y": "editor::Redo"
     },
     "context": "Editor"
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "shift-enter": [
+        "terminal::SendText",
+        "\u001b\r"
+      ]
+    }
   }
 ]

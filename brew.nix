@@ -44,6 +44,7 @@ let
     "obsidian"
     "postgres-app"
     "rectangle"
+    "spotify"
     "wealthfolio"
     "zed"
   ];
@@ -67,7 +68,7 @@ in
 {
   home.file.".Brewfile".text = brewfileContent;
 
-  home.activation.installHomebrew = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  home.activation.installHomebrew = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
     if [[ ! -f /opt/homebrew/bin/brew && ! -f /usr/local/bin/brew ]]; then
       export PATH="/usr/bin:/bin:$PATH"
       $DRY_RUN_CMD /bin/bash -c "$(/usr/bin/curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
