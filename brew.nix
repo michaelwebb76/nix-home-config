@@ -42,10 +42,13 @@ let
     "font-fira-code"
     "font-fira-mono"
     "obsidian"
+    "orbstack"
     "postgres-app"
+    "presentify"
     "rectangle"
     "spotify"
     "wealthfolio"
+    "whatsapp"
     "zed"
   ];
 
