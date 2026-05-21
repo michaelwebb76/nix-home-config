@@ -41,6 +41,7 @@ let
     "docker-desktop"
     "font-fira-code"
     "font-fira-mono"
+    "handbrake-app"
     "obsidian"
     "orbstack"
     "postgres-app"
