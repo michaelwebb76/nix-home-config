@@ -10,6 +10,7 @@
 
 let
   formulae = [
+    "aws-sso-util"
     "awscli"
     "broot"
     "cabal-install"

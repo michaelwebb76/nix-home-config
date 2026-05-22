@@ -16,6 +16,11 @@ let
     tf = "terraform";
     hms = "home-manager switch";
 
+    # Homebrew's aws-sso-util ships its own Python; the Haskell devshell's
+    # PYTHONPATH leaks Nix 3.13 site-packages into it and breaks the rpds
+    # C extension. Strip PYTHONPATH for this tool.
+    aws-sso-util = "env -u PYTHONPATH aws-sso-util";
+
     # Reload zsh
     szsh = "source ~/.zshrc";
 
