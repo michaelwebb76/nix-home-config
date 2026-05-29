@@ -21,6 +21,8 @@ let
     "git"
     "graphviz"
     "htop"
+    "kubernetes-cli"
+    "minikube"
     "nixfmt"
     "node@22"
     "nss"
