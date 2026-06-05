@@ -16,6 +16,7 @@ let
     "cabal-install"
     "curl"
     "direnv"
+    "fd"
     "fzf"
     "gh"
     "git"
@@ -31,6 +32,7 @@ let
       name = "redis";
       restartService = true;
     }
+    "rg"
     "starship"
     "tmux"
     "tree"
@@ -44,6 +46,7 @@ let
     "docker-desktop"
     "font-fira-code"
     "font-fira-mono"
+    "gcloud-cli"
     "handbrake-app"
     "obsidian"
     "orbstack"
