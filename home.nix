@@ -109,24 +109,18 @@ in
         TCPKeepAlive = "yes";
         UseKeychain = "yes";
       };
-      matchBlocks = {
-        "bread-staging.trikeapps.com" = {
-          controlMaster = "auto";
-          serverAliveInterval = 120;
-          user = "mike";
-        };
-
+      settings = {
         "*" = {
-          addKeysToAgent = "no";
-          compression = false;
-          controlPath = "/tmp/ssh_mux_%h_%p_%r";
-          controlPersist = "10";
-          controlMaster = "auto";
-          forwardAgent = true;
-          hashKnownHosts = false;
-          serverAliveCountMax = 3;
-          serverAliveInterval = 120;
-          userKnownHostsFile = "~/.ssh/known_hosts";
+          AddKeysToAgent = "no";
+          Compression = false;
+          ControlPath = "/tmp/ssh_mux_%h_%p_%r";
+          ControlPersist = "10";
+          ControlMaster = "auto";
+          ForwardAgent = true;
+          HashKnownHosts = false;
+          ServerAliveCountMax = 3;
+          ServerAliveInterval = 120;
+          UserKnownHostsFile = "~/.ssh/known_hosts";
         };
       };
     };
