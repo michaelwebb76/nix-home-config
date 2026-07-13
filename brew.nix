@@ -51,7 +51,6 @@ let
     "obsidian"
     "orbstack"
     "postgres-app"
-    "presentify"
     "rectangle"
     "spotify"
     "wealthfolio"
