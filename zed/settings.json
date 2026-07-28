@@ -13,8 +13,8 @@
   "agent_servers": {
     "claude-acp": {
       "default_config_options": {
-        "model": "default",
-        "mode": "auto"
+        "model": "sonnet",
+        "mode": "auto",
       },
       "type": "registry",
     },
@@ -69,6 +69,7 @@
     "**/dist*",
     "**/node_modules",
     "**/target",
+    "**/.worktrees",
   ],
   "format_on_save": "on",
   "git": {
@@ -164,7 +165,7 @@
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "One Dark"
+    "dark": "One Dark",
   },
   "ui_font_size": 15,
   "wrap_guides": [80],
