@@ -15,5 +15,7 @@ in
       config.lib.file.mkOutOfStoreSymlink "${repoPath}/zed/settings.json";
     ".config/zed/keymap.json".source =
       config.lib.file.mkOutOfStoreSymlink "${repoPath}/zed/keymap.json";
+    ".config/zed/tasks.json".source =
+      config.lib.file.mkOutOfStoreSymlink "${repoPath}/zed/tasks.json";
   };
 }
