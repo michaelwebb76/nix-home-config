@@ -139,16 +139,38 @@ in
         local branch_name="$1"
 
         # Find the worktree path from git
+        local worktree_list
+        worktree_list=$(git worktree list --porcelain)
+
         local worktree_path
-        worktree_path=$(git worktree list --porcelain | awk -v branch="refs/heads/$branch_name" '/^worktree /{wt=$0; sub(/^worktree /, "", wt)} /^branch /{if ($2 == branch) print wt}')
+        worktree_path=$(echo "$worktree_list" | awk -v branch="refs/heads/$branch_name" '/^worktree /{wt=$0; sub(/^worktree /, "", wt)} /^branch /{if ($2 == branch) print wt}')
 
         if [[ -z "$worktree_path" ]]; then
           echo "Error: No worktree found for branch '$branch_name'"
           return 1
         fi
 
+        if [[ "$worktree_path" == *$'\n'* ]]; then
+          echo "Error: Multiple worktrees matched branch '$branch_name', refusing to proceed:"
+          echo "$worktree_path"
+          return 1
+        fi
+
+        # Never operate on the main worktree - it's always the first entry
+        # git worktree list reports, and git refuses to remove it anyway, but
+        # we check explicitly so we never fall through to `rm -rf` on it.
+        local main_worktree
+        main_worktree=$(echo "$worktree_list" | awk '/^worktree /{print substr($0, 10); exit}')
+        if [[ "$worktree_path" == "$main_worktree" ]]; then
+          echo "Error: '$branch_name' resolves to the main worktree ($worktree_path) - refusing to remove it."
+          return 1
+        fi
+
         echo "Removing worktree at: $worktree_path"
-        git worktree remove "$worktree_path" --force
+        if ! git worktree remove "$worktree_path" --force; then
+          echo "Error: 'git worktree remove' failed - leaving '$worktree_path' in place. Resolve manually before retrying."
+          return 1
+        fi
 
         if [[ -d "$worktree_path" ]]; then
           echo "Directory still exists, removing: $worktree_path"
