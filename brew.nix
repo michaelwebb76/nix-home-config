@@ -27,6 +27,7 @@ let
     "nixfmt"
     "node@22"
     "nss"
+    "openbao"
     "prettier"
     {
       name = "redis";
@@ -38,6 +39,21 @@ let
     "tree"
     "watchman"
     "wget"
+  ];
+
+  taps = [
+    {
+      name = "bellroy/tap";
+      trusted = true;
+    }
+  ];
+
+  brews = [
+    "gitapult"
+    "config-rules-cli"
+    "byproduct"
+    "powerful-owl"
+    "iam-cli"
   ];
 
   casks = [
