@@ -25,7 +25,7 @@ let
     szsh = "source ~/.zshrc";
 
     # Reload home manager and zsh
-    reload = "NIXPKGS_ALLOW_UNFREE=1 home-manager switch --impure --extra-experimental-features nix-command && brew bundle --global && source ~/.zshrc";
+    reload = "NIXPKGS_ALLOW_UNFREE=1 home-manager switch --impure --extra-experimental-features nix-command && HOMEBREW_GITHUB_API_TOKEN=$(gh auth token) brew bundle --global && source ~/.zshrc";
 
     # Nix garbage collection + Homebrew cleanup
     garbage = "nix-collect-garbage -d && brew cleanup";
