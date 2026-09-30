@@ -57,7 +57,8 @@ let
   ];
 
   casks = [
-    "claude-code"
+    "activitywatch@experimental"
+    "claude-code@latest"
     "dbeaver-community"
     "docker-desktop"
     "font-fira-code"
@@ -131,6 +132,7 @@ in
         export HOMEBREW_GITHUB_API_TOKEN="$("$GH_BIN" auth token 2>/dev/null)"
       fi
       $DRY_RUN_CMD "$BREW_BIN" bundle --file="${config.home.homeDirectory}/.Brewfile"
+      $DRY_RUN_CMD "$BREW_BIN" upgrade --cask --greedy claude-code@latest || true
     fi
   '';
 }
