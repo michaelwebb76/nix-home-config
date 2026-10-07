@@ -57,7 +57,6 @@ let
   ];
 
   casks = [
-    "activitywatch@experimental"
     "claude-code@latest"
     "dbeaver-community"
     "docker-desktop"
@@ -69,6 +68,7 @@ let
     "orbstack"
     "postgres-app"
     "rectangle"
+    "solidtime"
     "spotify"
     "wealthfolio"
     "whatsapp"
